@@ -4,7 +4,7 @@ const index = () => {
   return (
     <section className="masthead -type-6">
       <div className="masthead__bg bg-dark-3">
-        <img alt="image" src="/img/masthead/6/bg.png" className="js-lazy" />
+        <img alt="image" src="/img/masthead/1/bg.webp" className="js-lazy" />
       </div>
 
       <div className="container">

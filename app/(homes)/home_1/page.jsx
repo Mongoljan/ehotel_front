@@ -3,7 +3,7 @@ import AddBanner from "@/components/add-banner/AddBanner";
 import PopularDestinations from "@/components/destinations/PopularDestinations";
 import DefaultFooter from "@/components/footer/default";
 import Header1 from "@/components/header/header-1";
-import Hero1 from "@/components/hero/hero-1";
+import Hero1 from "@/components/hero/hero-6";
 import BlockGuide from "@/components/block/BlockGuide";
 import Blog from "@/components/blog/Blog3";
 import CallToActions from "@/components/common/CallToActions";
@@ -12,6 +12,10 @@ import Testimonial from "@/components/home/home-1/Testimonial";
 import TestimonialLeftCol from "@/components/home/home-1/TestimonialLeftCol";
 import Hotels from "@/components/hotels/Hotels";
 import SelectFilter from "@/components/hotels/filter-tabs/SelectFilter";
+import Sidebar from "@/components/hotel-list/hotel-list-v1/Sidebar";
+import TopHeaderFilter from "@/components/hotel-list/hotel-list-v1/TopHeaderFilter";
+import HotelProperties from "@/components/hotel-list/hotel-list-v1/HotelProperties";
+import Pagination from "@/components/hotel-list/common/Pagination";
 
 export const metadata = {
   title: "Home-1 || GoTrip - Travel & Tour React NextJS Template",
@@ -28,6 +32,61 @@ const Home_1 = () => {
 
       <Hero1 />
       {/* End Hero 1 */}
+      <section className="layout-pt-md layout-pb-lg">
+        <div className="container">
+          <div className="row y-gap-30">
+            <div className="col-xl-3">
+              <aside className="sidebar y-gap-40 xl:d-none">
+                <Sidebar />
+              </aside>
+              {/* End sidebar for desktop */}
+
+              <div
+                className="offcanvas offcanvas-start"
+                tabIndex="-1"
+                id="listingSidebar"
+              >
+                <div className="offcanvas-header">
+                  <h5 className="offcanvas-title" id="offcanvasLabel">
+                    Filter Hotels
+                  </h5>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                {/* End offcanvas header */}
+
+                <div className="offcanvas-body">
+                  <aside className="sidebar y-gap-40  xl:d-block">
+                    <Sidebar />
+                  </aside>
+                </div>
+                {/* End offcanvas body */}
+              </div>
+              {/* End mobile menu sidebar */}
+            </div>
+            {/* End col */}
+
+            <div className="col-xl-9 ">
+              <TopHeaderFilter />
+              <div className="mt-30"></div>
+              {/* End mt--30 */}
+              <div className="row y-gap-30">
+                <HotelProperties />
+              </div>
+              {/* End .row */}
+              <Pagination />
+            </div>
+            {/* End .col for right content */}
+          </div>
+          {/* End .row */}
+        </div>
+        {/* End .container */}
+      </section>
+      
 
       <section className="layout-pt-lg layout-pb-md" data-aos="fade-up">
         <div className="container">
