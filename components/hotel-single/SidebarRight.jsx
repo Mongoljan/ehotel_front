@@ -1,6 +1,6 @@
 import FilterBox from "../../components/hotel-single/filter-box";
 
-const SidebarRight = ({ hotel }) => {
+const SidebarRight = ({ hotel, setRooms }) => {
   return (
     <aside className="ml-50 lg:ml-0">
       <div className="px-30 py-30 border-light rounded-4 shadow-4">
@@ -21,13 +21,12 @@ const SidebarRight = ({ hotel }) => {
             </div>
           </div>
         </div>
-        {/* End d-flex */}
 
         <div className="row y-gap-20 pt-30">
-          <FilterBox />
+          {/* ✅ Pass setRooms down */}
+          <FilterBox hotelId={hotel?.id} setRooms={setRooms} />
         </div>
       </div>
-      {/* End px-30 FilterBox */}
     </aside>
   );
 };

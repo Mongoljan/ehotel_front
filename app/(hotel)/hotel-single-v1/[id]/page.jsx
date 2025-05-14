@@ -28,23 +28,26 @@ import DefaultFooter from "@/components/footer/default";
 const HotelSingleV1Dynamic = ({ params }) => {
   const id = params.id;
   const [rooms, setRooms] = useState([]);
-  const hotel = { id };
+  const [hotel, setHotel] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [roomRes, combinedRes, roomMetaRes] = await Promise.all([
+        const [roomRes, combinedRes, roomMetaRes, detailRes] = await Promise.all([
           fetch(`https://dev.kacc.mn/api/roomsInHotels/?hotel=${id}`),
           fetch("https://dev.kacc.mn/api/combined-data/"),
-          fetch("https://dev.kacc.mn/api/all-room-data/")
+          fetch("https://dev.kacc.mn/api/all-room-data/"),
+          fetch(`https://dev.kacc.mn/api/property-details/?property=${id}`),
         ]);
 
-        if (!roomRes.ok || !combinedRes.ok || !roomMetaRes.ok) throw new Error("Fetch failed");
+        if (!roomRes.ok || !combinedRes.ok || !roomMetaRes.ok || !detailRes.ok)
+          throw new Error("Fetch failed");
 
-        const [roomData, combined, roomMeta] = await Promise.all([
+        const [roomData, combined, roomMeta, details] = await Promise.all([
           roomRes.json(),
           combinedRes.json(),
-          roomMetaRes.json()
+          roomMetaRes.json(),
+          detailRes.json(),
         ]);
 
         const getNameById = (list, id, key = "name") => {
@@ -62,9 +65,44 @@ const HotelSingleV1Dynamic = ({ params }) => {
           ),
         }));
 
+        const matchedDetail = details.find(d => d.property === Number(id));
+        if (!matchedDetail) throw new Error("No matching property detail found");
+
+        const {
+          propertyBasicInfo,
+          confirmAddress,
+          propertyPolicies,
+          property_photos,
+          google_map,
+          parking_situation,
+          general_facilities,
+        } = matchedDetail;
+
+        const [basicInfo, address, policies] = await Promise.all([
+          fetch(`https://dev.kacc.mn/api/property-basic-info/${propertyBasicInfo}/`).then(res => res.json()),
+          fetch(`https://dev.kacc.mn/api/confirm-address/${confirmAddress}/`).then(res => res.json()),
+          fetch(`https://dev.kacc.mn/api/property-policies/${propertyPolicies}/`).then(res => res.json()),
+        ]);
+
+        const hotelData = {
+          id,
+          title: basicInfo.property_name_en,
+          location: `${getNameById(combined.province, address.province_city)}, ${getNameById(combined.soum, address.soum)}`,
+          price: 100, // Static placeholder price
+          images: property_photos,
+          star_rating: basicInfo.star_rating,
+          basicInfo,
+          address,
+          policies,
+          map: google_map,
+          parking: parking_situation,
+          facilities: general_facilities.map(f => getNameById(combined.facilities, f, "name_en")),
+        };
+
         setRooms(enrichedRooms);
+        setHotel(hotelData);
       } catch (error) {
-        console.error("Room fetch error:", error);
+        console.error("Hotel fetch error:", error);
       }
     };
 
@@ -77,7 +115,7 @@ const HotelSingleV1Dynamic = ({ params }) => {
       <Header11 />
       <TopBreadCrumb />
       <StickyHeader hotel={hotel} />
-      <GalleryOne hotel={hotel} />
+      {hotel && <GalleryOne hotel={hotel} />}
 
       <section className="pt-30">
         <div className="container">
@@ -92,9 +130,7 @@ const HotelSingleV1Dynamic = ({ params }) => {
                   <Overview />
                 </div>
                 <div className="col-12">
-                  <h3 className="text-22 fw-500 pt-40 border-top-light">
-                    Most Popular Facilities
-                  </h3>
+                  <h3 className="text-22 fw-500 pt-40 border-top-light">Most Popular Facilities</h3>
                   <div className="row y-gap-10 pt-20">
                     <PopularFacilities />
                   </div>
@@ -105,7 +141,7 @@ const HotelSingleV1Dynamic = ({ params }) => {
               </div>
             </div>
             <div className="col-xl-4">
-              <SidebarRight hotel={hotel} />
+              <SidebarRight hotel={hotel} setRooms={setRooms} />
             </div>
           </div>
         </div>
@@ -136,7 +172,7 @@ const HotelSingleV1Dynamic = ({ params }) => {
           <div className="row pt-30">
             <div className="col-auto">
               <a href="#" className="button -md -outline-blue-1 text-blue-1">
-                Show all 116 reviews{" "}
+                Show all 116 reviews
                 <div className="icon-arrow-top-right ml-15"></div>
               </a>
             </div>
@@ -151,9 +187,7 @@ const HotelSingleV1Dynamic = ({ params }) => {
               <div className="row">
                 <div className="col-auto">
                   <h3 className="text-22 fw-500">Leave a Reply</h3>
-                  <p className="text-15 text-dark-1 mt-5">
-                    Your email address will not be published.
-                  </p>
+                  <p className="text-15 text-dark-1 mt-5">Your email address will not be published.</p>
                 </div>
               </div>
               <ReplyFormReview />
@@ -181,21 +215,14 @@ const HotelSingleV1Dynamic = ({ params }) => {
             <div className="row x-gap-20 y-gap-20 items-center">
               <div className="col-auto">
                 <div className="flex-center size-60 rounded-full bg-white">
-                  <Image
-                    width={30}
-                    height={30}
-                    src="/img/icons/health.svg"
-                    alt="icon"
-                  />
+                  <Image width={30} height={30} src="/img/icons/health.svg" alt="icon" />
                 </div>
               </div>
               <div className="col-auto">
-                <h4 className="text-18 lh-15 fw-500">
-                  Extra health &amp; safety measures
-                </h4>
+                <h4 className="text-18 lh-15 fw-500">Extra health &amp; safety measures</h4>
                 <div className="text-15 lh-15">
-                  This property has taken extra health and hygiene measures
-                  to ensure that your safety is their priority
+                  This property has taken extra health and hygiene measures to ensure that your safety is their
+                  priority
                 </div>
               </div>
             </div>
@@ -256,9 +283,7 @@ const HotelSingleV1Dynamic = ({ params }) => {
           <div className="row justify-center text-center">
             <div className="col-auto">
               <div className="sectionTitle -md">
-                <h2 className="sectionTitle__title">
-                  Popular properties similar to The Crown Hotel
-                </h2>
+                <h2 className="sectionTitle__title">Popular properties similar to The Crown Hotel</h2>
                 <p className=" sectionTitle__text mt-5 sm:mt-0">
                   Interdum et malesuada fames ac ante ipsum
                 </p>

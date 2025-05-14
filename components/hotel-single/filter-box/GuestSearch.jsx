@@ -1,23 +1,21 @@
+'use client';
 
-'use client'
+import React from "react";
 
-import React, { useState } from "react";
 const counters = [
   { name: "Adults", defaultValue: 2 },
   { name: "Children", defaultValue: 1 },
   { name: "Rooms", defaultValue: 1 },
 ];
 
-const Counter = ({ name, defaultValue, onCounterChange }) => {
-  const [count, setCount] = useState(defaultValue);
+const Counter = ({ name, value, onCounterChange }) => {
   const incrementCount = () => {
-    setCount(count + 1);
-    onCounterChange(name, count + 1);
+    onCounterChange(name, value + 1);
   };
+
   const decrementCount = () => {
-    if (count > 0) {
-      setCount(count - 1);
-      onCounterChange(name, count - 1);
+    if (value > 0) {
+      onCounterChange(name, value - 1);
     }
   };
 
@@ -30,7 +28,6 @@ const Counter = ({ name, defaultValue, onCounterChange }) => {
             <div className="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
           )}
         </div>
-        {/* End .col-auto */}
         <div className="col-auto">
           <div className="d-flex items-center js-counter">
             <button
@@ -39,37 +36,28 @@ const Counter = ({ name, defaultValue, onCounterChange }) => {
             >
               <i className="icon-minus text-12" />
             </button>
-            {/* decrement button */}
             <div className="flex-center size-20 ml-15 mr-15">
-              <div className="text-15 js-count">{count}</div>
+              <div className="text-15 js-count">{value}</div>
             </div>
-            {/* counter text  */}
             <button
               className="button -outline-blue-1 text-blue-1 size-38 rounded-4 js-up"
               onClick={incrementCount}
             >
               <i className="icon-plus text-12" />
             </button>
-            {/* increment button */}
           </div>
         </div>
-        {/* End .col-auto */}
       </div>
-      {/* End .row */}
       <div className="border-top-light mt-24 mb-24" />
     </>
   );
 };
 
-const GuestSearch = () => {
-  const [guestCounts, setGuestCounts] = useState({
-    Adults: 2,
-    Children: 1,
-    Rooms: 1,
-  });
+const GuestSearch = ({ guestCounts, setGuestCounts }) => {
   const handleCounterChange = (name, value) => {
-    setGuestCounts((prevState) => ({ ...prevState, [name]: value }));
+    setGuestCounts((prev) => ({ ...prev, [name]: value }));
   };
+
   return (
     <div className="searchMenu-guests px-20 py-10 border-light rounded-4 js-form-dd js-form-counters">
       <div
@@ -80,13 +68,9 @@ const GuestSearch = () => {
       >
         <h4 className="text-15 fw-500 ls-2 lh-16">Guest</h4>
         <div className="text-15 text-light-1 ls-2 lh-16">
-          <span className="js-count-adult">{guestCounts.Adults}</span> adults -{" "}
-          <span className="js-count-child">{guestCounts.Children}</span>{" "}
-          childeren - <span className="js-count-room">{guestCounts.Rooms}</span>{" "}
-          room
+          {guestCounts.Adults} adults - {guestCounts.Children} children - {guestCounts.Rooms} room
         </div>
       </div>
-      {/* End guest */}
 
       <div className="shadow-2 dropdown-menu min-width-400">
         <div className="bg-white px-30 py-30 rounded-4 counter-box">
@@ -94,7 +78,7 @@ const GuestSearch = () => {
             <Counter
               key={counter.name}
               name={counter.name}
-              defaultValue={counter.defaultValue}
+              value={guestCounts[counter.name]}
               onCounterChange={handleCounterChange}
             />
           ))}
@@ -103,4 +87,5 @@ const GuestSearch = () => {
     </div>
   );
 };
+
 export default GuestSearch;
