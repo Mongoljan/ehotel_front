@@ -1,17 +1,18 @@
-'use client';
+// "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import DateSearch from './DateSearch';
 import GuestSearch from './GuestSearch';
+// Use Sonner (or your chosen toast lib) instead of alert
+import { toast } from 'sonner';
 
-const FilterBox = ({ hotelId, setRooms }) => {
-  const [dates, setDates] = useState([]);
+const FilterBox = ({ hotelId, setRooms, dates, setDates }) => {
   const [guestCounts, setGuestCounts] = useState({ Adults: 2, Children: 1, Rooms: 1 });
 
   const handleAvailabilityCheck = async () => {
     if (dates.length !== 2) {
-      alert("Please select check-in and check-out dates.");
+      toast.error("Please select check-in and check-out dates.");
       return;
     }
 
@@ -33,11 +34,12 @@ const FilterBox = ({ hotelId, setRooms }) => {
         pricesRes.json()
       ]);
 
-      const getName = (list, id, key = 'name') => list.find(el => el.id === id)?.[key] || 'Unknown';
+      const getName = (list, id, key = 'name') =>
+        list.find(el => el.id === id)?.[key] || 'Unknown';
 
       const groupedMap = new Map();
 
-      for (const room of roomsData) {
+      roomsData.forEach(room => {
         const key = `${room.room_type}-${room.room_category}`;
         const existing = groupedMap.get(key);
         if (!existing) {
@@ -59,12 +61,13 @@ const FilterBox = ({ hotelId, setRooms }) => {
         } else {
           existing.number_of_rooms_to_sell += room.number_of_rooms_to_sell;
         }
-      }
+      });
 
-      // Now fetch availability + final_price for each unique combo
       const enrichedRooms = await Promise.all(
         Array.from(groupedMap.values()).map(async room => {
-          const priceObj = prices.find(p => p.room_type === room.room_type && p.room_category === room.room_category);
+          const priceObj = prices.find(
+            p => p.room_type === room.room_type && p.room_category === room.room_category
+          );
           if (!priceObj) return null;
 
           const availableRes = await fetch(
@@ -85,10 +88,10 @@ const FilterBox = ({ hotelId, setRooms }) => {
         })
       );
 
-      const validRooms = enrichedRooms.filter(Boolean);
-      setRooms(validRooms);
+      setRooms(enrichedRooms.filter(Boolean));
     } catch (err) {
       console.error("Failed to fetch rooms:", err);
+      toast.error("Error fetching availability. Please try again.");
     }
   };
 
@@ -96,10 +99,8 @@ const FilterBox = ({ hotelId, setRooms }) => {
     <>
       <div className="col-12">
         <div className="searchMenu-date px-20 py-10 border-light rounded-4 -right js-form-dd js-calendar">
-          <div>
-            <h4 className="text-15 fw-500 ls-2 lh-16">Check in - Check out</h4>
-            <DateSearch dates={dates} setDates={setDates} />
-          </div>
+          <h4 className="text-15 fw-500 ls-2 lh-16">Check in - Check out</h4>
+          <DateSearch dates={dates} setDates={setDates} />
         </div>
       </div>
 
@@ -109,7 +110,10 @@ const FilterBox = ({ hotelId, setRooms }) => {
 
       <div className="col-12">
         <div className="button-item h-full">
-          <button onClick={handleAvailabilityCheck} className="button -dark-1 px-35 h-60 col-12 bg-blue-1 text-white">
+          <button
+            onClick={handleAvailabilityCheck}
+            className="button -dark-1 px-35 h-60 col-12 bg-blue-1 text-white"
+          >
             Check availability
           </button>
         </div>

@@ -2,7 +2,7 @@
 
 import Aos from "aos";
 import { useEffect } from "react";
-import SrollTop from "../components/common/ScrollTop";
+import ScrollTop from "../components/common/ScrollTop";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -12,6 +12,9 @@ import "aos/dist/aos.css";
 import "../styles/index.scss";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
+
+// 👉 Import Sonner instead of react-hot-toast:
+import { Toaster } from "sonner";
 
 if (typeof window !== "undefined") {
   require("bootstrap/dist/js/bootstrap");
@@ -24,26 +27,20 @@ export default function RootLayout({ children }) {
       once: true,
     });
   }, []);
+
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
-        <link rel="icon" href="./favicon.ico" />
+        {/* …your head tags… */}
       </head>
       <body>
         <main>
           <Provider store={store}>
             {children}
-            <SrollTop />
+            <ScrollTop />
+
+            {/* Sonner’s Toaster */}
+            <Toaster position="top-center" />
           </Provider>
         </main>
       </body>

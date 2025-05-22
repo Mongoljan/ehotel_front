@@ -1,7 +1,7 @@
 import Link from "next/link";
 import BookingDetails from "./sidebar/BookingDetails";
 
-const CustomerInfo = () => {
+const CustomerInfo = ({ formData, onInputChange }) => {
   return (
     <>
       <div className="col-xl-7 col-lg-8 mt-30">
@@ -12,86 +12,45 @@ const CustomerInfo = () => {
           </Link>{" "}
           to manage your bookings on the go!
         </div>
-        {/* End register notify */}
 
-        <h2 className="text-22 fw-500 mt-40 md:mt-24">
-          Let us know who you are
-        </h2>
+        <h2 className="text-22 fw-500 mt-40 md:mt-24">Let us know who you are</h2>
 
         <div className="row x-gap-20 y-gap-20 pt-20">
           <div className="col-12">
             <div className="form-input ">
-              <input type="text" required />
+              <input
+                type="text"
+                required
+                value={formData.customer_name}
+                onChange={(e) => onInputChange("customer_name", e.target.value)}
+              />
               <label className="lh-1 text-16 text-light-1">Full Name</label>
             </div>
           </div>
-          {/* End col-12 */}
 
           <div className="col-md-6">
             <div className="form-input ">
-              <input type="text" required />
+              <input
+                type="email"
+                required
+                value={formData.customer_email}
+                onChange={(e) => onInputChange("customer_email", e.target.value)}
+              />
               <label className="lh-1 text-16 text-light-1">Email</label>
             </div>
           </div>
-          {/* End col-12 */}
 
           <div className="col-md-6">
             <div className="form-input ">
-              <input type="text" required />
+              <input
+                type="text"
+                required
+                value={formData.customer_phone}
+                onChange={(e) => onInputChange("customer_phone", e.target.value)}
+              />
               <label className="lh-1 text-16 text-light-1">Phone Number</label>
             </div>
           </div>
-          {/* End col-12 */}
-
-          <div className="col-12">
-            <div className="form-input ">
-              <input type="text" required />
-              <label className="lh-1 text-16 text-light-1">
-                Address line 1
-              </label>
-            </div>
-          </div>
-          {/* End col-12 */}
-
-          <div className="col-12">
-            <div className="form-input ">
-              <input type="text" required />
-              <label className="lh-1 text-16 text-light-1">
-                Address line 2
-              </label>
-            </div>
-          </div>
-          {/* End col-12 */}
-
-          <div className="col-md-6">
-            <div className="form-input ">
-              <input type="text" required />
-              <label className="lh-1 text-16 text-light-1">
-                State/Province/Region
-              </label>
-            </div>
-          </div>
-          {/* End col-12 */}
-
-          <div className="col-md-6">
-            <div className="form-input ">
-              <input type="text" required />
-              <label className="lh-1 text-16 text-light-1">
-                ZIP code/Postal code
-              </label>
-            </div>
-          </div>
-          {/* End col-12 */}
-
-          <div className="col-12">
-            <div className="form-input ">
-              <textarea required rows={6} defaultValue={""} />
-              <label className="lh-1 text-16 text-light-1">
-                Special Requests
-              </label>
-            </div>
-          </div>
-          {/* End col-12 */}
 
           <div className="col-12">
             <div className="row y-gap-20 items-center justify-between">
@@ -101,21 +60,16 @@ const CustomerInfo = () => {
                   Use and Privacy Policy.
                 </div>
               </div>
-              {/* End col-12 */}
             </div>
           </div>
-          {/* End col-12 */}
         </div>
-        {/* End .row */}
       </div>
-      {/* End .col-xl-7 */}
 
       <div className="col-xl-5 col-lg-4 mt-30">
         <div className="booking-sidebar">
           <BookingDetails />
         </div>
       </div>
-      {/*  */}
     </>
   );
 };

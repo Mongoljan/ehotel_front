@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 export default function GalleryOne({ hotel }) {
   const [isOpen, setOpen] = useState(false);
 
+
   return (
     <>
       <ModalVideo

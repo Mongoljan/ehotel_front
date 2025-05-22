@@ -1,4 +1,5 @@
-const PopularFacilities = () => {
+const PopularFacilities = ({hotel}) => {
+
   return (
     <>
       <div className="col-md-5">
@@ -18,7 +19,7 @@ const PopularFacilities = () => {
       <div className="col-md-5">
         <div className="d-flex x-gap-15 y-gap-15 items-center">
           <i className="icon-parking"></i>
-          <div className="text-15">Parking</div>
+          <div className="text-15">Зогсоол {hotel?.parking}</div>
         </div>
       </div>
 

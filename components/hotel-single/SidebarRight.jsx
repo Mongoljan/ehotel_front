@@ -1,6 +1,6 @@
 import FilterBox from "../../components/hotel-single/filter-box";
 
-const SidebarRight = ({ hotel, setRooms }) => {
+const SidebarRight = ({ hotel, setRooms,  dates, setDates }) => {
   return (
     <aside className="ml-50 lg:ml-0">
       <div className="px-30 py-30 border-light rounded-4 shadow-4">
@@ -24,7 +24,8 @@ const SidebarRight = ({ hotel, setRooms }) => {
 
         <div className="row y-gap-20 pt-30">
           {/* ✅ Pass setRooms down */}
-          <FilterBox hotelId={hotel?.id} setRooms={setRooms} />
+          <FilterBox hotelId={hotel?.id} setRooms={setRooms} dates={dates}
+      setDates={setDates} />
         </div>
       </div>
     </aside>
