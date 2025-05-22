@@ -37,5 +37,8 @@
     "slick-carousel": "^1.8.1",
     "sonner": "^2.0.3",
     "swiper": "^8.4.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1"
   }
 }
