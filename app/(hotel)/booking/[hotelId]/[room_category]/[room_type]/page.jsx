@@ -1,26 +1,31 @@
-import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
+export const dynamic = 'force-dynamic'; // 🔥 CRITICAL: disables static generation
 
-const StepperBooking = dynamic(() => import('@/components/booking-page/stepper-booking'), {
-  ssr: false,
-});
+import CallToActions from "@/components/common/CallToActions";
+import Header11 from "@/components/header/header-11";
+import DefaultFooter from "@/components/footer/default";
+import StepperBooking from "@/components/booking-page/stepper-booking";
 
-export const dynamic = 'force-dynamic';
+export const metadata = {
+  title: "Hotel Booking Page || GoTrip - Travel & Tour React NextJS Template",
+  description: "GoTrip - Travel & Tour React NextJS Template",
+};
 
-export default function BookingPage() {
+const BookingPage = () => {
   return (
     <>
       <div className="header-margin"></div>
       <Header11 />
+
       <section className="pt-40 layout-pb-md">
         <div className="container">
-          <Suspense fallback={<div>Loading...</div>}>
-            <StepperBooking />
-          </Suspense>
+          <StepperBooking />
         </div>
       </section>
+
       <CallToActions />
       <DefaultFooter />
     </>
   );
-}
+};
+
+export default BookingPage;
