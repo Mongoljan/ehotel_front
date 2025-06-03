@@ -2,6 +2,7 @@
 import dynamic from 'next/dynamic';
 import 'photoswipe/dist/photoswipe.css';
 import { useEffect, useState } from 'react';
+import { DateObject } from 'react-multi-date-picker';
 import Header11 from '@/components/header/header-11';
 import TopBreadCrumb from '@/components/hotel-single/TopBreadCrumb';
 import StickyHeader from '@/components/hotel-single/StickyHeader';
@@ -29,6 +30,19 @@ const HotelSingleV1Dynamic = ({ params }) => {
   const [rooms, setRooms] = useState([]);
   const [hotel, setHotel] = useState(null);
   const [dates, setDates] = useState([]);
+
+  // ✅ Load dates from localStorage if available
+  useEffect(() => {
+    const storedCheckIn = localStorage.getItem("check_in");
+    const storedCheckOut = localStorage.getItem("check_out");
+
+    if (storedCheckIn && storedCheckOut) {
+      setDates([
+        new DateObject({ date: storedCheckIn, format: "YYYY-MM-DD" }),
+        new DateObject({ date: storedCheckOut, format: "YYYY-MM-DD" }),
+      ]);
+    }
+  }, []);
 
   const checkIn = dates[0]?.format('YYYY-MM-DD') || '';
   const checkOut = dates[1]?.format('YYYY-MM-DD') || '';
@@ -61,7 +75,6 @@ const HotelSingleV1Dynamic = ({ params }) => {
           return item?.[key] || 'Unknown';
         };
 
-        // Build valid room key pairs and price map
         const priceMap = {};
         roomPrices.forEach((p) => {
           const key = `${p.room_type}-${p.room_category}`;
@@ -77,7 +90,6 @@ const HotelSingleV1Dynamic = ({ params }) => {
             const key = `${room.room_type}-${room.room_category}`;
             const priceInfo = priceMap[key];
 
-            // Fetch final price
             const finalPriceRes = await fetch(`https://dev.kacc.mn/api/final-price/${priceInfo.id}/`);
             const finalPriceData = finalPriceRes.ok ? await finalPriceRes.json() : null;
 
@@ -97,7 +109,6 @@ const HotelSingleV1Dynamic = ({ params }) => {
 
         const enrichedRooms = await Promise.all(enrichedRoomPromises);
 
-        // Extract hotel info
         const matchedDetail = detailList.find((d) => d.property === Number(id));
         if (!matchedDetail) throw new Error('No matching property detail found');
 
@@ -187,7 +198,6 @@ const HotelSingleV1Dynamic = ({ params }) => {
           <AvailableRooms hotel={hotel} rooms={rooms} checkIn={checkIn} checkOut={checkOut} />
         </div>
       </section>
-      {/* Remaining sections remain unchanged */}
       <section className="pt-40" id="reviews"><div className="container"><h3 className="text-22 fw-500">Guest reviews</h3><ReviewProgress /><DetailsReview /></div></section>
       <section className="mt-40" id="facilities"><div className="container"><h3 className="text-22 fw-500">Facilities of this Hotel</h3><Facilities /></div></section>
       <section className="pt-40"><div className="container"><HelpfulFacts /></div></section>

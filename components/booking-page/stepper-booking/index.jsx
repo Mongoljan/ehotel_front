@@ -115,7 +115,7 @@ const StepperBooking = () => {
       if (!res.ok) throw new Error('Booking failed');
       const result = await res.json();
       setBookingResult(result);
-      setCurrentStep((prev) => prev + 2);
+      setCurrentStep((prev) => prev + 1);
     } catch (err) {
       console.error('Booking error:', err);
       alert('Booking failed. Please check your input and try again.');
@@ -124,7 +124,7 @@ const StepperBooking = () => {
 
   const steps = [
     {
-      title: 'Personal Details',
+      title: 'Хувийн мэдээлэл',
       stepNo: '1',
       stepBar: <div className="col d-none d-sm-block"><div className="w-full h-1 bg-border"></div></div>,
       content: (
@@ -141,14 +141,14 @@ const StepperBooking = () => {
       ),
     },
     {
-      title: 'Payment Details',
-      stepNo: '2',
+      title: 'Төлбөрийн мэдээлэл',
+      stepNo: '3',
       stepBar: <div className="col d-none d-sm-block"><div className="w-full h-1 bg-border"></div></div>,
       content: <PaymentInfo />,
     },
     {
-      title: 'Final Step',
-      stepNo: '3',
+      title: 'Сүүлийн шат',
+      stepNo: '2',
       stepBar: '',
       content: (
         <OrderSubmittedInfo

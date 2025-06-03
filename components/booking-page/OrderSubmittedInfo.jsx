@@ -1,8 +1,8 @@
-// OrderSubmittedInfo.jsx
 'use client';
 
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
+import BookingDetails from './sidebar/BookingDetails';
 
 const OrderSubmittedInfo = ({
   result,
@@ -71,6 +71,29 @@ const OrderSubmittedInfo = ({
     } catch (err) {
       console.error('Cancel error:', err);
       alert('Захиалга цуцлах үед алдаа гарлаа.');
+    }
+  };
+
+  const handleConfirmBooking = async () => {
+    try {
+      const res = await fetch('https://dev.kacc.mn/api/bookings/confirm/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          booking_code: result?.booking_code,
+          pin_code: result?.pin_code,
+        }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        alert('Захиалга амжилттай баталгаажлаа.');
+      } else {
+        alert(`Алдаа: ${data.message || 'Баталгаажуулахад амжилтгүй боллоо'}`);
+      }
+    } catch (err) {
+      console.error('Confirm error:', err);
+      alert('Захиалга баталгаажуулах үед алдаа гарлаа.');
     }
   };
 
@@ -156,12 +179,16 @@ const OrderSubmittedInfo = ({
           </div>
         </div>
 
-        <div className="d-flex justify-content-end mt-30">
+        <div className="d-flex justify-content-end mt-30 gap-3">
           <button className="btn btn-outline-danger" onClick={handleCancelBooking}>
             Захиалга цуцлах
           </button>
+          <button className="btn btn-success" onClick={handleConfirmBooking}>
+            Захиалгыг баталгаажуулах
+          </button>
         </div>
       </div>
+      <BookingDetails/>
     </div>
   );
 };
