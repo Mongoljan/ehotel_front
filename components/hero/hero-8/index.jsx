@@ -2,7 +2,7 @@
 'use client'
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
+import { Navigation } from "swiper/modules";
 import MainFilterSearchBox from "./MainFilterSearchBox";
 
 const index = () => {

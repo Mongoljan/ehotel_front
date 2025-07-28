@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import InvoiceComponent from "@/components/invoice/Invoice";
 
@@ -14,4 +15,4 @@ const Invoice = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Invoice), { ssr: false });
+export default dynamic(() => Promise.resolve(Invoice));

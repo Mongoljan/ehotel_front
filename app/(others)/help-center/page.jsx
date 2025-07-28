@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import CallToActions from "@/components/common/CallToActions";
 import Faq from "@/components/faq/Faq";
@@ -90,4 +91,4 @@ const HelpCenter = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(HelpCenter), { ssr: false });
+export default dynamic(() => Promise.resolve(HelpCenter));

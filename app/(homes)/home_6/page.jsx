@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import PopularDestinations from "@/components/destinations/PopularDestinations";
 import Footer5 from "@/components/footer/footer-5";
@@ -230,4 +231,4 @@ const home_6 = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(home_6), { ssr: false });
+export default dynamic(() => Promise.resolve(home_6));

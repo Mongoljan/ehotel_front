@@ -9,6 +9,13 @@ const nextConfig = {
         },
       ],
     },
+    
+    // Next.js 15 Turbopack configuration (now stable)
+    turbopack: {
+      resolveAlias: {
+        // Add any necessary alias resolutions
+      }
+    }
   };
   
   module.exports = nextConfig;

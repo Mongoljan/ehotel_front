@@ -3,6 +3,7 @@
 import Aos from "aos";
 import { useEffect } from "react";
 import ScrollTop from "../components/common/ScrollTop";
+import ErrorBoundary from "../components/common/ErrorBoundary";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -31,18 +32,26 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <link 
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" 
+          rel="stylesheet" 
+        />
         {/* …your head tags… */}
       </head>
       <body>
-        <main>
-          <Provider store={store}>
-            {children}
-            <ScrollTop />
-
-            {/* Sonner’s Toaster */}
-            <Toaster position="top-center" />
-          </Provider>
-        </main>
+        <ErrorBoundary>
+          <main>
+            <Provider store={store}>
+              {children}
+              <ScrollTop />
+              <Toaster 
+                position="top-right" 
+                richColors 
+                closeButton
+              />
+            </Provider>
+          </main>
+        </ErrorBoundary>
       </body>
     </html>
   );

@@ -4,10 +4,32 @@
 import Image from "next/image";
 import Link from "next/link";
 import Slider from "react-slick";
-import { hotelsData } from "../../../data/hotels";
+import { useState, useEffect } from "react";
+import { hotelAPI, dataTransformers } from "../../../services/api";
 import isTextMatched from "../../../utils/isTextMatched";
 
 const HotelProperties = () => {
+  const [hotelsData, setHotelsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchHotels = async () => {
+      try {
+        setLoading(true);
+        const apiData = await hotelAPI.getApprovedProperties();
+        const transformedData = dataTransformers.transformProperties(apiData);
+        setHotelsData(transformedData);
+      } catch (err) {
+        console.error('Failed to fetch hotels:', err);
+        setError('Failed to load hotels');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHotels();
+  }, []);
   var itemSettings = {
     dots: true,
     infinite: true,
@@ -42,7 +64,23 @@ const HotelProperties = () => {
 
   return (
     <>
-      {hotelsData.slice(0, 12).map((item) => (
+      {loading && (
+        <div className="col-12 text-center">
+          <div className="spinner-border text-primary" role="status">
+            <span className="sr-only">Loading hotels...</span>
+          </div>
+        </div>
+      )}
+      
+      {error && (
+        <div className="col-12 text-center">
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        </div>
+      )}
+      
+      {!loading && !error && hotelsData.slice(0, 12).map((item) => (
         <div
           className="col-lg-4 col-sm-6"
           key={item?.id}

@@ -1,7 +1,7 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Thumbs, Mousewheel } from "swiper";
+import { Navigation, Thumbs, Mousewheel } from "swiper/modules";
 import { useState, useEffect } from "react";
 
 const slides = [

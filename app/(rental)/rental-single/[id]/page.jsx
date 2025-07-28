@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
 import rentalsData from "@/data/rentals";
@@ -223,6 +224,4 @@ const TourSingleV1Dynamic = ({ params }) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(TourSingleV1Dynamic), {
-  ssr: false,
-});
+export default dynamic(() => Promise.resolve(TourSingleV1Dynamic));

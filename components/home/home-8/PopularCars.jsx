@@ -4,7 +4,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper/modules";
 import carsData from "../../../data/cars";
 import isTextMatched from "../../../utils/isTextMatched";
 

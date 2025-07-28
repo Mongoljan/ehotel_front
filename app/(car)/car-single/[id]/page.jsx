@@ -1,6 +1,7 @@
+
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
-import carsData from "@/data/cars";
+import { carAPI } from "@/services/travelApi";
 import Header11 from "@/components/header/header-11";
 import Overview from "@/components/car-single/Overview";
 import PropertyHighlights from "@/components/car-single/PropertyHighlights";
@@ -21,9 +22,34 @@ export const metadata = {
   description: "GoTrip - Travel & Tour React NextJS Template",
 };
 
-const TourSingleV1Dynamic = ({ params }) => {
+const TourSingleV1Dynamic = async ({ params }) => {
   const id = params.id;
-  const car = carsData.find((item) => item.id == id) || carsData[0];
+  
+  // Fetch car data from API
+  let car = null;
+  try {
+    car = await carAPI.getCarDetails(id);
+  } catch (error) {
+    console.error('Failed to fetch car details:', error);
+    // Fallback to first car if specific car not found
+    const carsData = await carAPI.getCars();
+    car = carsData[0];
+  }
+
+  if (!car) {
+    return (
+      <div className="container">
+        <div className="row justify-center text-center">
+          <div className="col-xl-6">
+            <div className="text-center pt-80">
+              <h1>Car Not Found</h1>
+              <p>The requested car could not be found.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -264,6 +290,4 @@ const TourSingleV1Dynamic = ({ params }) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(TourSingleV1Dynamic), {
-  ssr: false,
-});
+export default dynamic(() => Promise.resolve(TourSingleV1Dynamic));

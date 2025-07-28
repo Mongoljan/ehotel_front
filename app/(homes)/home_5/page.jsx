@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import Header5 from "@/components/header/header-5";
 import Hero5 from "@/components/hero/hero-5";
@@ -298,4 +299,4 @@ const home_5 = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(home_5), { ssr: false });
+export default dynamic(() => Promise.resolve(home_5));

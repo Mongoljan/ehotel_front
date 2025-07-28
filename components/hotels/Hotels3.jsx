@@ -4,11 +4,52 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
-import { hotelsData } from "../../data/hotels";
+import { Navigation, Pagination } from "swiper/modules";
+import { useState, useEffect } from "react";
+import { hotelAPI, dataTransformers } from "../../services/api";
 import isTextMatched from "../../utils/isTextMatched";
 
 const Hotels3 = () => {
+  const [hotelsData, setHotelsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchHotels = async () => {
+      try {
+        setLoading(true);
+        const apiData = await hotelAPI.getApprovedProperties();
+        const transformedData = dataTransformers.transformProperties(apiData);
+        setHotelsData(transformedData);
+      } catch (err) {
+        console.error('Failed to fetch hotels:', err);
+        setError('Failed to load hotels');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHotels();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center">
+        <div className="spinner-border text-primary" role="status">
+          <span className="sr-only">Loading hotels...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        {error}
+      </div>
+    );
+  }
+
   return (
     <>
       <Swiper

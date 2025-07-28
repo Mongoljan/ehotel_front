@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import CallToActions from "@/components/common/CallToActions";
 import DefaultHeader from "@/components/header/default-header";
@@ -175,4 +176,4 @@ const About = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(About), { ssr: false });
+export default dynamic(() => Promise.resolve(About));

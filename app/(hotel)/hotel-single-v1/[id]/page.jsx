@@ -209,4 +209,4 @@ const HotelSingleV1Dynamic = ({ params }) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(HotelSingleV1Dynamic), { ssr: false });
+export default dynamic(() => Promise.resolve(HotelSingleV1Dynamic));

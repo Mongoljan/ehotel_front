@@ -15,7 +15,7 @@
 @import "./base/form";
 @import "./base/typography";
 
-@import "./components/404.scss";
+@import "./components/error-page.scss";
 @import "./components/sectionTitle.scss";
 @import "./components/masthead.scss";
 @import "./components/citiesCard.scss";
@@ -35,7 +35,6 @@
 @import "./components/niceSelect.scss";
 @import "./components/mapFilter.scss";
 @import "./components/hotelsCard.scss";
-
 @import "./components/preloader.scss";
 
 @import "./utilities/spacing";

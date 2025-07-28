@@ -9,7 +9,7 @@ import Overview from "@/components/tour-single/Overview";
 import TourSnapShot from "@/components/tour-single/TourSnapShot";
 import { Gallery, Item } from "react-photoswipe-gallery";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
+import { Navigation } from "swiper/modules";
 import ModalVideo from "react-modal-video"
 
 export default function TourGallery({tour}) {

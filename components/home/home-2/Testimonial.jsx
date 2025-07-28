@@ -4,9 +4,9 @@
 import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper/modules";
 import { testimonial2 } from "../../../data/testimonialData";
-import { EffectCards } from "swiper";
+import { EffectCards } from "swiper/modules";
 
 const Testimonial = () => {
   return (

@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper/modules";
 import { tourCategories1 } from "../../../data/tourCategories";
 
 const TourCategories = () => {

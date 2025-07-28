@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import Header3 from "@/components/header/header-3";
 import Hero3 from "@/components/hero/hero-3";
@@ -342,4 +343,4 @@ const home_3 = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(home_3), { ssr: false });
+export default dynamic(() => Promise.resolve(home_3));

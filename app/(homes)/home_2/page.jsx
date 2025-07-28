@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import Blog4 from "@/components/blog/Blog4";
 import Brand2 from "@/components/brand/Brand2";
@@ -161,4 +162,4 @@ const home_2 = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(home_2), { ssr: false });
+export default dynamic(() => Promise.resolve(home_2));

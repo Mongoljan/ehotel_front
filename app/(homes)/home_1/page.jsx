@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import AddBanner from "@/components/add-banner/AddBanner";
 import PopularDestinations from "@/components/destinations/PopularDestinations";
@@ -186,4 +187,4 @@ const Home_1 = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Home_1), { ssr: false });
+export default dynamic(() => Promise.resolve(Home_1));

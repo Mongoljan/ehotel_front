@@ -4,7 +4,7 @@
 import Image from "next/image";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
+import { Navigation } from "swiper/modules";
 import Link from "next/link";
 
 const PopularRoutes = () => {

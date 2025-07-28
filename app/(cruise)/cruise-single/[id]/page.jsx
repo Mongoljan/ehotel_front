@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
 import cruiseData from "@/data/cruise";
@@ -200,6 +201,4 @@ const CruiseSingleV1Dynamic = ({ params }) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(CruiseSingleV1Dynamic), {
-  ssr: false,
-});
+export default dynamic(() => Promise.resolve(CruiseSingleV1Dynamic));

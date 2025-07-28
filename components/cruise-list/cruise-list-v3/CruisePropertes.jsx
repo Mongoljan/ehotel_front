@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination } from "swiper/modules";
 import cruiseData from "../../../data/cruise";
 import Link from "next/link";
 

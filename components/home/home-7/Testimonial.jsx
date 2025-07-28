@@ -2,7 +2,7 @@
 'use client'
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Pagination } from "swiper/modules";
 import { testimonial3 } from "../../../data/testimonialData";
 
 const Testimonial = () => {

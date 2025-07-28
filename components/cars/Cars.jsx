@@ -4,10 +4,32 @@
 import Image from "next/image";
 import Link from "next/link";
 import Slider from "react-slick";
-import carsData from "../../data/cars";
+import { useState, useEffect } from "react";
+import { carAPI, travelDataTransformers } from "../../services/travelApi";
 import isTextMatched from "../../utils/isTextMatched";
 
 const Cars = () => {
+  const [carsData, setCarsData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchCars = async () => {
+      try {
+        setLoading(true);
+        const apiData = await carAPI.getCars();
+        const transformedData = apiData.map(travelDataTransformers.transformCar);
+        setCarsData(transformedData);
+      } catch (err) {
+        console.error('Failed to fetch cars:', err);
+        setError('Failed to load cars');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCars();
+  }, []);
   var settings = {
     dots: true,
     infinite: true,
@@ -71,8 +93,23 @@ const Cars = () => {
 
   return (
     <>
-      <Slider {...settings}>
-        {carsData.slice(0, 4).map((item) => (
+      {loading && (
+        <div className="text-center">
+          <div className="spinner-border text-primary" role="status">
+            <span className="sr-only">Loading cars...</span>
+          </div>
+        </div>
+      )}
+      
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      )}
+      
+      {!loading && !error && (
+        <Slider {...settings}>
+          {carsData.slice(0, 4).map((item) => (
           <div
             key={item.id}
             data-aos="fade"
@@ -198,7 +235,8 @@ const Cars = () => {
             </Link>
           </div>
         ))}
-      </Slider>
+        </Slider>
+      )}
     </>
   );
 };

@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
 import { hotelsData } from "@/data/hotels";
@@ -302,6 +303,4 @@ const HotelSingleV2Dynamic = ({ params }) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(HotelSingleV2Dynamic), {
-  ssr: false,
-});
+export default dynamic(() => Promise.resolve(HotelSingleV2Dynamic));

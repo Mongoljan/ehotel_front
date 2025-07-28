@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
 import activityData from "@/data/activity";
@@ -288,6 +289,4 @@ const TourSingleV1Dynamic = ({ params }) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(TourSingleV1Dynamic), {
-  ssr: false,
-});
+export default dynamic(() => Promise.resolve(TourSingleV1Dynamic));

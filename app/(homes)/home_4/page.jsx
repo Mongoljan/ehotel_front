@@ -1,3 +1,4 @@
+
 import dynamic from "next/dynamic";
 import DefaultFooter from "@/components/footer/default";
 import Header4 from "@/components/header/header-4";
@@ -216,4 +217,4 @@ const home_4 = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(home_4), { ssr: false });
+export default dynamic(() => Promise.resolve(home_4));
