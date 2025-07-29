@@ -1,6 +1,11 @@
+'use client'
+
+import { useTranslation } from '../../../contexts/TranslationContext';
 import MainFilterSearchBox from "./MainFilterSearchBox";
 
 const index = () => {
+  const { t } = useTranslation();
+  
   return (
     <section className="masthead -type-1 z-5">
       <div className="masthead__bg">
@@ -14,14 +19,14 @@ const index = () => {
                 className="text-60 lg:text-40 md:text-30 text-white"
                 data-aos="fade-up"
               >
-                Find Next Place To Visit
+                {t('hero.findNextPlace')}
               </h1>
               <p
                 className="text-white mt-6 md:mt-10"
                 data-aos="fade-up"
                 data-aos-delay="100"
               >
-                Discover amzaing places at exclusive deals
+                {t('hero.discoverAmazing')}
               </p>
             </div>
             {/* End hero title */}

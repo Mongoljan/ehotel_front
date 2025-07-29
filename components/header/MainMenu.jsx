@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useTranslation } from "../../contexts/TranslationContext";
 
 import {
   homeItems,
@@ -18,7 +19,8 @@ import { useState } from "react";
 
 const MainMenu = ({ style = "" }) => {
   const pathname = usePathname();
-  const [isActiveParent, setIsActiveParent] = useState(false)
+  const [isActiveParent, setIsActiveParent] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <nav className="menu js-navList">
@@ -29,7 +31,7 @@ const MainMenu = ({ style = "" }) => {
           } menu-item-has-children`}
         >
           <a href="#">
-            <span className="mr-10">Home</span>
+            <span className="mr-10">{t('navigation.home')}</span>
             <i className="icon icon-chevron-sm-down" />
           </a>
           <ul className="subnav">
@@ -49,7 +51,7 @@ const MainMenu = ({ style = "" }) => {
 
         <li className={isActiveParent ? "menu-item-has-children -has-mega-menu current":'menu-item-has-children -has-mega-menu'}>
           <a href="#">
-            <span className="mr-10">Categories</span>
+            <span className="mr-10">{t('navigation.hotels')}</span>
             <i className="icon icon-chevron-sm-down" />
           </a>
           <div className="mega">
@@ -59,7 +61,7 @@ const MainMenu = ({ style = "" }) => {
         {/* End categories menu items */}
 
         <li className={pathname === "/destinations" ? "current" : ""}>
-          <Link href="/destinations">Destinations</Link>
+          <Link href="/destinations">{t('navigation.destinations')}</Link>
         </li>
         {/* End Destinatinos single menu */}
 
@@ -69,7 +71,7 @@ const MainMenu = ({ style = "" }) => {
           } menu-item-has-children`}
         >
           <a href="#">
-            <span className="mr-10">Blog</span>
+            <span className="mr-10">{t('navigation.blog')}</span>
             <i className="icon icon-chevron-sm-down" />
           </a>
           <ul className="subnav">
@@ -93,7 +95,7 @@ const MainMenu = ({ style = "" }) => {
           } menu-item-has-children`}
         >
           <a href="#">
-            <span className="mr-10">Pages</span>
+            <span className="mr-10">{t('common.pages')}</span>
             <i className="icon icon-chevron-sm-down" />
           </a>
           <ul className="subnav">
@@ -117,7 +119,7 @@ const MainMenu = ({ style = "" }) => {
           } menu-item-has-children`}
         >
           <a href="#">
-            <span className="mr-10">Dashboard</span>
+            <span className="mr-10">{t('navigation.dashboard')}</span>
             <i className="icon icon-chevron-sm-down" />
           
           </a>
@@ -136,7 +138,7 @@ const MainMenu = ({ style = "" }) => {
         </li>
 
         <li className={pathname === "/contact" ? "current" : ""}>
-          <Link href="/contact">Contact</Link>
+          <Link href="/contact">{t('navigation.contact')}</Link>
         </li>
       </ul>
     </nav>

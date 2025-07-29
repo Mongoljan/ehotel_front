@@ -38,7 +38,7 @@ class ErrorBoundary extends Component {
                 <div className="mb-20">
                   <h1 className="text-40 fw-600">Oops! Something went wrong</h1>
                   <p className="text-15 text-light-1 mt-5">
-                    {this.state.error?.message || t('errors.general')}
+                    {this.state.error?.message || 'An unexpected error occurred'}
                   </p>
                 </div>
                 

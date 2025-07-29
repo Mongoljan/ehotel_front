@@ -3,6 +3,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useTranslation } from "../../../contexts/TranslationContext";
 import MainMenu from "../MainMenu";
 import CurrenctyMegaMenu from "../CurrenctyMegaMenu";
 import LanguageMegaMenu from "../LanguageMegaMenu";
@@ -10,6 +11,7 @@ import MobileMenu from "../MobileMenu";
 
 const Header1 = () => {
   const [navbar, setNavbar] = useState(false);
+  const { t } = useTranslation();
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
@@ -73,13 +75,13 @@ const Header1 = () => {
                     href="/login"
                     className="button px-30 fw-400 text-14 -white bg-white h-50 text-dark-1"
                   >
-                    Become An Expert
+                    {t('navigation.becomeExpert')}
                   </Link>
                   <Link
                     href="/signup"
                     className="button px-30 fw-400 text-14 border-white -outline-white h-50 text-white ml-20"
                   >
-                    Sign In / Register
+                    {t('navigation.signInRegister')}
                   </Link>
                 </div>
                 {/* End btn-group */}

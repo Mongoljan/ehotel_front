@@ -1,6 +1,9 @@
+import { useTranslation } from '../../../contexts/TranslationContext';
 import Social from "../../../components/common/social/Social";
 
 const Copyright = () => {
+  const { t } = useTranslation();
+  
   return (
     <div className="row justify-between items-center y-gap-10">
       <div className="col-auto">
@@ -16,16 +19,16 @@ const Copyright = () => {
               >
                 ib-themes
               </a>
-              All rights reserved.
+              {t('footer.allRightsReserved')}.
             </div>
           </div>
           {/* End .col */}
 
           <div className="col-auto">
             <div className="d-flex x-gap-15">
-              <a href="#">Privacy</a>
-              <a href="#">Terms</a>
-              <a href="#">Site Map</a>
+              <a href="#">{t('footer.privacy')}</a>
+              <a href="#">{t('footer.terms')}</a>
+              <a href="#">{t('footer.siteMap')}</a>
             </div>
           </div>
           {/* End .col */}

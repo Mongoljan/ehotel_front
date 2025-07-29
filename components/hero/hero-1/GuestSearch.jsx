@@ -1,15 +1,13 @@
 
 'use client'
 
+import { useTranslation } from '../../../contexts/TranslationContext';
 import React, { useState } from "react";
-const counters = [
-  { name: "Adults", defaultValue: 2 },
-  { name: "Children", defaultValue: 1 },
-  { name: "Rooms", defaultValue: 1 },
-];
 
 const Counter = ({ name, defaultValue, onCounterChange }) => {
+  const { t } = useTranslation();
   const [count, setCount] = useState(defaultValue);
+  
   const incrementCount = () => {
     setCount(count + 1);
     onCounterChange(name, count + 1);
@@ -21,13 +19,22 @@ const Counter = ({ name, defaultValue, onCounterChange }) => {
     }
   };
 
+  const getTranslatedName = (name) => {
+    switch(name) {
+      case 'Adults': return t('hero.adults');
+      case 'Children': return t('hero.children');
+      case 'Rooms': return t('hero.rooms');
+      default: return name;
+    }
+  };
+
   return (
     <>
       <div className="row y-gap-10 justify-between items-center">
         <div className="col-auto">
-          <div className="text-15 lh-12 fw-500">{name}</div>
+          <div className="text-15 lh-12 fw-500">{getTranslatedName(name)}</div>
           {name === "Children" && (
-            <div className="text-14 lh-12 text-light-1 mt-5">Ages 0 - 17</div>
+            <div className="text-14 lh-12 text-light-1 mt-5">{t('hero.agesNote')}</div>
           )}
         </div>
         {/* End .col-auto */}
@@ -62,6 +69,13 @@ const Counter = ({ name, defaultValue, onCounterChange }) => {
 };
 
 const GuestSearch = () => {
+  const { t } = useTranslation();
+  const counters = [
+    { name: "Adults", defaultValue: 2 },
+    { name: "Children", defaultValue: 1 },
+    { name: "Rooms", defaultValue: 1 },
+  ];
+  
   const [guestCounts, setGuestCounts] = useState({
     Adults: 2,
     Children: 1,
@@ -78,12 +92,12 @@ const GuestSearch = () => {
         aria-expanded="false"
         data-bs-offset="0,22"
       >
-        <h4 className="text-15 fw-500 ls-2 lh-16">Guest</h4>
+        <h4 className="text-15 fw-500 ls-2 lh-16">{t('hero.guest')}</h4>
         <div className="text-15 text-light-1 ls-2 lh-16">
-          <span className="js-count-adult">{guestCounts.Adults}</span> adults -{" "}
+          <span className="js-count-adult">{guestCounts.Adults}</span> {t('hero.adultsCount')} -{" "}
           <span className="js-count-child">{guestCounts.Children}</span>{" "}
-          childeren - <span className="js-count-room">{guestCounts.Rooms}</span>{" "}
-          room
+          {t('hero.childrenCount')} - <span className="js-count-room">{guestCounts.Rooms}</span>{" "}
+          {t('hero.roomCount')}
         </div>
       </div>
       {/* End guest */}

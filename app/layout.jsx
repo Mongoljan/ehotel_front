@@ -2,8 +2,8 @@
 
 import Aos from "aos";
 import { useEffect } from "react";
-import ScrollTop from "../components/common/ScrollTop";
-import ErrorBoundary from "../components/common/ErrorBoundary";
+import ScrollToTop from "../components/common/ScrollTop";
+import { TranslationProvider } from "../contexts/TranslationContext";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -39,11 +39,11 @@ export default function RootLayout({ children }) {
         {/* …your head tags… */}
       </head>
       <body>
-        <ErrorBoundary>
+        <TranslationProvider>
           <main>
             <Provider store={store}>
               {children}
-              <ScrollTop />
+              <ScrollToTop />
               <Toaster 
                 position="top-right" 
                 richColors 
@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
               />
             </Provider>
           </main>
-        </ErrorBoundary>
+        </TranslationProvider>
       </body>
     </html>
   );

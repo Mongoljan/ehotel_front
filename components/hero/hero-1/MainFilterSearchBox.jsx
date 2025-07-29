@@ -1,6 +1,7 @@
 
 'use client'
 
+import { useTranslation } from '../../../contexts/TranslationContext';
 import { useSelector, useDispatch } from "react-redux";
 import { addCurrentTab } from "../../../features/hero/findPlaceSlice";
 import DateSearch from "../DateSearch";
@@ -9,6 +10,7 @@ import LocationSearch from "./LocationSearch";
 import { useRouter } from "next/navigation";
 
 const MainFilterSearchBox = () => {
+  const { t } = useTranslation();
   const { tabs, currentTab } = useSelector((state) => state.hero) || {};
   const dispatch = useDispatch();
   const Router = useRouter()
@@ -38,7 +40,7 @@ const MainFilterSearchBox = () => {
             <div className="searchMenu-date px-30 lg:py-20 lg:px-0 js-form-dd js-calendar">
               <div>
                 <h4 className="text-15 fw-500 ls-2 lh-16">
-                  Check in - Check out
+                  {t('hero.checkInOut')}
                 </h4>
                 <DateSearch />
               </div>
@@ -54,7 +56,7 @@ const MainFilterSearchBox = () => {
                 onClick={() => Router.push("/hotel-list-v1")}
               >
                 <i className="icon-search text-20 mr-10" />
-                Search
+                {t('common.search')}
               </button>
             </div>
             {/* End search button_item */}
