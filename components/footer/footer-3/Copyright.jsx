@@ -1,3 +1,5 @@
+'use client';
+
 import { useTranslation } from '../../../contexts/TranslationContext';
 import Social from "../../../components/common/social/Social";
 

@@ -135,12 +135,12 @@
 
   .-link {
     &:hover {
-      background-color: color-opac(blue-1, 0.05) !important;
+      background-color: color-opac("blue-1", 0.05) !important;
     }
   }
 
   .-link.active {
-    background-color: color-opac(blue-1, 0.05) !important;
+    background-color: color-opac("blue-1", 0.05) !important;
   }
 }
 

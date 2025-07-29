@@ -7,25 +7,8 @@ const LanguageMegaMenu = ({ textClass = "" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Safe way to use translation context
-  let translationContext;
-  try {
-    translationContext = useTranslation();
-  } catch (error) {
-    // Fallback if translation context is not available
-    console.warn('Translation context not available, using fallback');
-    translationContext = {
-      currentLanguage: 'en',
-      changeLanguage: () => {},
-      availableLanguages: [
-        { code: 'en', name: 'English', flag: '🇺🇸' },
-        { code: 'mn', name: 'Монгол', flag: '🇲🇳' }
-      ],
-      getLanguageInfo: (code) => ({ code: 'en', name: 'English', flag: '🇺🇸' })
-    };
-  }
-
-  const { currentLanguage, changeLanguage, availableLanguages, getLanguageInfo } = translationContext;
+  // Use translation context - our context has fallback handling built-in
+  const { currentLanguage, switchLanguage, languages } = useTranslation();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -39,10 +22,14 @@ const LanguageMegaMenu = ({ textClass = "" }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const currentLangInfo = getLanguageInfo(currentLanguage);
+  // Get available languages from the languages object
+  const availableLanguages = Object.values(languages || {});
+  const currentLangInfo = languages && languages[currentLanguage] ? languages[currentLanguage] : { flag: '🇺🇸', name: 'English' };
 
   const handleLanguageChange = (langCode) => {
-    changeLanguage(langCode);
+    if (switchLanguage) {
+      switchLanguage(langCode);
+    }
     setIsOpen(false);
   };
 

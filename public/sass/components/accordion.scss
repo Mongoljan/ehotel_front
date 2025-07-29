@@ -152,7 +152,7 @@
 
   &__item.is-active {
     .sidebar__button {
-      background-color: color-opac(blue-1, 0.05) !important;
+      background-color: color-opac("blue-1", 0.05) !important;
       color: var(--color-blue-1) !important;
     }
   }

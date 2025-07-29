@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import { useTranslation } from '../../../contexts/TranslationContext';
 import MainFilterSearchBox from "./MainFilterSearchBox";
 
-const index = () => {
+const Hero1 = () => {
   const { t } = useTranslation();
   
   return (
@@ -46,4 +46,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Hero1;

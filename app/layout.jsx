@@ -17,12 +17,13 @@ import { store } from "../store/store";
 // 👉 Import Sonner instead of react-hot-toast:
 import { Toaster } from "sonner";
 
-if (typeof window !== "undefined") {
-  require("bootstrap/dist/js/bootstrap");
-}
-
 export default function RootLayout({ children }) {
   useEffect(() => {
+    // Only load bootstrap on client side
+    if (typeof window !== "undefined") {
+      import("bootstrap/dist/js/bootstrap");
+    }
+    
     Aos.init({
       duration: 1200,
       once: true,

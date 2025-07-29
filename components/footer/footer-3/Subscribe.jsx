@@ -1,3 +1,5 @@
+'use client';
+
 import { useTranslation } from '../../../contexts/TranslationContext';
 
 const Subscribe = () => {

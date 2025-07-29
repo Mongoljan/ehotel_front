@@ -1,3 +1,5 @@
+'use client';
+
 import { useTranslation } from '../../../contexts/TranslationContext';
 import AppButton from "./AppButton";
 import ContactInfo from "./ContactInfo";
@@ -6,7 +8,7 @@ import FooterContent from "./FooterContent";
 import Social from "../../common/social/Social";
 import Subscribe from "./Subscribe";
 
-const index = () => {
+const Footer3 = () => {
   const { t } = useTranslation();
   
   return (
@@ -72,4 +74,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Footer3;
