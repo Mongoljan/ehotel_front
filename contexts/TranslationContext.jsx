@@ -99,8 +99,10 @@ export const TranslationProvider = ({ children }) => {
   const contextValue = {
     currentLanguage,
     changeLanguage,
+    switchLanguage: changeLanguage, // Alias for consistency
     t,
     isLoading,
+    languages: LANGUAGES,
     availableLanguages: Object.values(LANGUAGES),
     getLanguageInfo: (code) => LANGUAGES[code]
   };

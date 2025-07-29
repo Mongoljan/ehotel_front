@@ -8,7 +8,7 @@ const LanguageMegaMenu = ({ textClass = "" }) => {
   const dropdownRef = useRef(null);
 
   // Use translation context - our context has fallback handling built-in
-  const { currentLanguage, switchLanguage, languages } = useTranslation();
+  const { currentLanguage, changeLanguage, t, availableLanguages, getLanguageInfo } = useTranslation();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -22,13 +22,12 @@ const LanguageMegaMenu = ({ textClass = "" }) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Get available languages from the languages object
-  const availableLanguages = Object.values(languages || {});
-  const currentLangInfo = languages && languages[currentLanguage] ? languages[currentLanguage] : { flag: '🇺🇸', name: 'English' };
+  // Get current language info
+  const currentLangInfo = getLanguageInfo ? getLanguageInfo(currentLanguage) : { flag: '🇺🇸', name: 'English' };
 
   const handleLanguageChange = (langCode) => {
-    if (switchLanguage) {
-      switchLanguage(langCode);
+    if (changeLanguage) {
+      changeLanguage(langCode);
     }
     setIsOpen(false);
   };
