@@ -110,10 +110,23 @@
     "airConditioning": "Агаар цэвэршүүлэгч",
     "rating": "Үнэлгээ",
     "excellent": "Маш сайн",
-    "veryGood": "Их сайн",
-    "good": "Сайн",
-    "fair": "Дунд зэрэг",
-    "poor": "Муу"
+    "veryGood": "Сайн",
+    "good": "Дунд зэрэг",
+    "fair": "Хангалттай",
+    "poor": "Муу",
+    "recentlyViewed": "Саяхан үзсэн зочид буудлууд",
+    "recentlyViewedDesc": "Таны саяхан үзсэн зочид буудлууд",
+    "viewAllRecent": "Бүх саяхны үзсэн зочид буудлыг үзэх",
+    "recommended": "Санал болгох зочид буудлууд",
+    "recommendedDesc": "Танд тусгайлан сонгосон зочид буудлууд",
+    "viewAllRecommended": "Бүх санал болгох зочид буудлыг үзэх",
+    "filters": {
+      "all": "Бүгд",
+      "luxury": "Тансаг",
+      "budget": "Хямд",
+      "boutique": "Бутик",
+      "business": "Бизнес"
+    }
   },
   "booking": {
     "title": "Захиалга",

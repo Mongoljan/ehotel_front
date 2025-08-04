@@ -46,7 +46,7 @@ const FilterHotels = ({ filterOption }) => {
 
   return (
     <>
-      {filteredItems.slice(0, 8).map((item) => (
+      {filteredItems.slice(0, 4).map((item) => (
         <div
           className="col-xl-3 col-lg-3 col-sm-6"
           key={item?.id}
@@ -66,11 +66,11 @@ const FilterHotels = ({ filterOption }) => {
                   prevArrow={<ArrowSlick type="prev" />}
                 >
                   {item?.slideImg?.map((slide, i) => (
-                    <div className="cardImage ratio ratio-1:1" key={i}>
+                    <div key={i}>
                       <div className="cardImage__content ">
                         <Image
-                          width={300}
-                          height={300}
+                          width={400}
+                          height={400}
                           className="rounded-4 col-12 js-lazy"
                           src={slide}
                           alt="image"

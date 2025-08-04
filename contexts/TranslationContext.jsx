@@ -18,9 +18,12 @@ export const useTranslation = () => {
     return {
       t: (key) => key, // Return the key itself as fallback
       currentLanguage: 'en',
+      changeLanguage: () => {},
       switchLanguage: () => {},
       isLoading: false,
-      languages: LANGUAGES
+      languages: LANGUAGES,
+      availableLanguages: Object.values(LANGUAGES),
+      getLanguageInfo: (code) => LANGUAGES[code] || LANGUAGES.en
     };
   }
   return context;

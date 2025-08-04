@@ -1,3 +1,13 @@
+// Ensure .cardImage__content is defined for proper image/slider layout
+.cardImage__content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
 .hotelsCard.-type-1 {
   .hotelsCard {
     &__image {

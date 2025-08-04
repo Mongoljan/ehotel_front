@@ -113,7 +113,20 @@
     "veryGood": "Very Good",
     "good": "Good",
     "fair": "Fair",
-    "poor": "Poor"
+    "poor": "Poor",
+    "recentlyViewed": "Recently Viewed Hotels",
+    "recentlyViewedDesc": "Hotels you've recently browsed",
+    "viewAllRecent": "View All Recent Hotels",
+    "recommended": "Recommended Hotels",
+    "recommendedDesc": "Handpicked hotels just for you",
+    "viewAllRecommended": "View All Recommended Hotels",
+    "filters": {
+      "all": "All",
+      "luxury": "Luxury",
+      "budget": "Budget",
+      "boutique": "Boutique",
+      "business": "Business"
+    }
   },
   "booking": {
     "title": "Booking",

@@ -11,8 +11,12 @@ import CallToActions from "@/components/common/CallToActions";
 import Destinations from "@/components/home/home-1/Destinations";
 import Testimonial from "@/components/home/home-1/Testimonial";
 import TestimonialLeftCol from "@/components/home/home-1/TestimonialLeftCol";
+import RecentlyViewed from "@/components/home/home-1/RecentlyViewed";
+import RecommendedHotels from "@/components/home/home-1/RecommendedHotels";
 import Hotels from "@/components/hotels/Hotels";
 import SelectFilter from "@/components/hotels/filter-tabs/SelectFilter";
+import FilterHotels3 from "@/components/hotels/FilterHotels3";
+
 
 export const metadata = {
   title: "Home-1 || GoTrip - Travel & Tour React NextJS Template",
@@ -29,6 +33,36 @@ const Home_1 = () => {
 
       <Hero1 />
       {/* End Hero 1 */}
+       <section className="layout-pt-md layout-pb-md bg-light-2">
+        <div className="container">
+          <div className="row y-gap-30">
+            <BlockGuide />
+          </div>
+          {/* End .row */}
+        </div>
+        {/* End .container */}
+      </section>
+       <section className="layout-pt-md layout-pb-md bg-light-2">
+        <div className="container">
+          <div className="row y-gap-30">
+          <RecentlyViewed/>
+          </div>
+          {/* End .row */}
+        </div>
+        {/* End .container */}
+      </section>
+             <section className="layout-pt-md layout-pb-md bg-light-2">
+        <div className="container">
+          <div className="row y-gap-30">
+          <RecommendedHotels/>
+          </div>
+          {/* End .row */}
+        </div>
+        {/* End .container */}
+      </section>
+   
+   
+  
 
       <section className="layout-pt-lg layout-pb-md" data-aos="fade-up">
         <div className="container">
@@ -63,6 +97,9 @@ const Home_1 = () => {
         {/* End .container */}
       </section>
       {/* End Popular Destinations */}
+        
+          <FilterHotels3/>
+    
 
       <section className="layout-pt-md layout-pb-md">
         <div className="container">
@@ -107,6 +144,20 @@ const Home_1 = () => {
         </div>
       </section>
       {/* Block Guide Section */}
+
+      <section className="layout-pt-md layout-pb-md bg-light-2">
+        <div className="container">
+          <RecentlyViewed />
+        </div>
+      </section>
+      {/* Recently Viewed Hotels Section */}
+
+      <section className="layout-pt-md layout-pb-md">
+        <div className="container">
+          <RecommendedHotels />
+        </div>
+      </section>
+      {/* Recommended Hotels Section */}
 
       <section className="layout-pt-lg layout-pb-lg bg-blue-2">
         <div className="container">

@@ -8,7 +8,26 @@ const LanguageMegaMenu = ({ textClass = "" }) => {
   const dropdownRef = useRef(null);
 
   // Use translation context - our context has fallback handling built-in
-  const { currentLanguage, changeLanguage, t, availableLanguages, getLanguageInfo } = useTranslation();
+  // Use translation context - our context has fallback handling built-in
+  const {
+    currentLanguage,
+    changeLanguage,
+    switchLanguage,
+    t,
+    availableLanguages,
+    languages,
+    getLanguageInfo
+  } = useTranslation();
+
+  // Use availableLanguages or fallback to Object.values(languages)
+  const langs = availableLanguages || (languages ? Object.values(languages) : []);
+
+  // Debug logging
+  console.log('LanguageMegaMenu debug:', {
+    currentLanguage,
+    availableLanguages,
+    changeLanguage: typeof changeLanguage
+  });
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -26,8 +45,13 @@ const LanguageMegaMenu = ({ textClass = "" }) => {
   const currentLangInfo = getLanguageInfo ? getLanguageInfo(currentLanguage) : { flag: '🇺🇸', name: 'English' };
 
   const handleLanguageChange = (langCode) => {
-    if (changeLanguage) {
-      changeLanguage(langCode);
+    // Prefer switchLanguage if available, else changeLanguage
+    const fn = switchLanguage || changeLanguage;
+    if (fn) {
+      fn(langCode);
+      console.log('Language change called successfully');
+    } else {
+      console.error('No language change function available');
     }
     setIsOpen(false);
   };
@@ -64,10 +88,11 @@ const LanguageMegaMenu = ({ textClass = "" }) => {
       >
         <div className="px-20 py-20 border-bottom-light">
           <div className="text-15 fw-500 lh-15">Choose Language</div>
+          <div className="text-10 text-gray">Debug: {langs?.length || 0} languages available</div>
         </div>
 
         <div className="py-15">
-          {availableLanguages.map((lang) => (
+          {(langs || []).map((lang) => (
             <div
               key={lang.code}
               className={`d-block js-dropdown-link px-20 py-10 cursor-pointer hover-bg-light ${
@@ -89,6 +114,9 @@ const LanguageMegaMenu = ({ textClass = "" }) => {
               </div>
             </div>
           ))}
+          {(!langs || langs.length === 0) && (
+            <div className="px-20 py-10 text-12 text-gray">No languages available</div>
+          )}
         </div>
       </div>
     </div>
