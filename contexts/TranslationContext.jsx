@@ -79,24 +79,29 @@ export const TranslationProvider = ({ children }) => {
   // Translation function
   const t = (key, params = {}) => {
     if (isLoading) return key;
-    
+
     const keys = key.split('.');
     let value = translations;
-    
+
     for (const k of keys) {
       value = value?.[k];
       if (value === undefined) break;
     }
-    
-    if (typeof value !== 'string') {
+
+    if (value === undefined) {
       console.warn(`Translation missing for key: ${key}`);
       return key;
     }
-    
-    // Replace parameters in translation
-    return Object.keys(params).reduce((text, param) => {
-      return text.replace(new RegExp(`{{${param}}}`, 'g'), params[param]);
-    }, value);
+
+    // If value is a string, do parameter replacement
+    if (typeof value === 'string') {
+      return Object.keys(params).reduce((text, param) => {
+        return text.replace(new RegExp(`{{${param}}}`, 'g'), params[param]);
+      }, value);
+    }
+
+    // If value is an object (e.g., for FAQ), return as is
+    return value;
   };
 
   const contextValue = {

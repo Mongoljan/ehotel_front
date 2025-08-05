@@ -2,7 +2,11 @@ export const hotelsData = [
   {
     id: 1,
     tag: "Breakfast Included",
-    slideImg: ["/img/hotels/1.png"],
+   slideImg: [
+      "/img/hotels/10.png",
+      "/img/hotels/11.png",
+      "/img/hotels/12.png",
+    ],
     img: "/img/hotels/1.png",
     title: "The Montcalm At Brewery London City",
     location: "Westminster Borough, London",
@@ -72,7 +76,11 @@ export const hotelsData = [
   {
     id: 6,
     tag: "-25% today",
-    slideImg: ["/img/hotels/6.png"],
+     slideImg: [
+      "/img/hotels/10.png",
+      "/img/hotels/11.png",
+      "/img/hotels/12.png",
+    ],
     img: "/img/hotels/6.png",
     title: "The Montcalm At Brewery London City",
     location: "Westminster Borough, London",
@@ -146,7 +154,11 @@ export const hotelsData = [
   {
     id: 11,
     tag: "best seller",
-    slideImg: ["/img/hotels/11.png"],
+     slideImg: [
+      "/img/hotels/10.png",
+      "/img/hotels/11.png",
+      "/img/hotels/12.png",
+    ],
     img: "/img/hotels/11.png",
     title: "The Westin New York at Times Square West",
     location: "Manhattan, New York",

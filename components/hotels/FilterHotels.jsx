@@ -43,6 +43,7 @@ const FilterHotels = ({ filterOption }) => {
       </button>
     );
   }
+  console.log(filteredItems);
 
   return (
     <>

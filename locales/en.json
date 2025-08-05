@@ -165,6 +165,19 @@
     "applyFilters": "Apply Filters",
     "clearFilters": "Clear All Filters"
   },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Frequently Asked Questions",
+    "q1": { "q": "How can I get an invoice?", "a": "Once you proceed to payment for your booking, an invoice is automatically generated. You can download it by clicking 'Download Invoice' at the top right corner of the payment page." },
+    "q2": { "q": "How can I pay for my booking?", "a": "You can pay for your room via Qpay or bank transfer. If you choose bank transfer, please ensure you enter the correct account and transaction details." },
+    "q3": { "q": "What if I enter the wrong transaction details?", "a": "If you enter incorrect transaction details, your booking will not be confirmed. Please contact us immediately at 99972626 to confirm your booking or request a refund." },
+    "q4": { "q": "Can I pay in installments or pay in person on arrival?", "a": "No, we require 100% prepayment to avoid double bookings or unexpected cancellations and to ensure a smooth experience for all guests." },
+    "q5": { "q": "Can I get an e-barimt (e-receipt)?", "a": "Yes. When filling in your details, select your type (individual, company, or taxpayer) and enter your code. After your stay, your e-barimt will be automatically registered and sent to your email." },
+    "q6": { "q": "Can I cancel my booking?", "a": "Yes. We offer the most flexible cancellation terms possible, but fees may vary depending on your hotel, number of guests, rooms, and payment amount. If you cancel after the allowed period, 100% of the payment will be charged." },
+    "q7": { "q": "Are there any fees for cancelling a booking?", "a": "Cancellation fees depend on the hotel's internal policy. Please review the cancellation terms and fees during the booking process." },
+    "q8": { "q": "How are refunds processed?", "a": "Refunds are processed within 3 business days after deducting any applicable fees according to the hotel's cancellation policy." },
+    "q9": { "q": "What if I can't arrive on the booked date or will be late?", "a": "If you do not cancel within the allowed period, 100% of the payment will be charged. If you are late, please inform your hotel to arrange your stay for the remaining nights." }
+  },
   "errors": {
     "general": "Something went wrong",
     "networkError": "Network error occurred",

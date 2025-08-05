@@ -1,4 +1,34 @@
+
 .footer.-type-1 {
+  background-color: var(--color-dark-1);
+  color: #fff;
+
+  a,
+  .text-blue-1,
+  .text-light-1,
+  .fw-500,
+  .footer__row a,
+  .footer__row .text-18,
+  .footer__row .text-16,
+  .footer__row .text-15,
+  .footer__row .text-14 {
+    color: #fff !important;
+  }
+
+  .footer-logo img {
+    content: url('/img/general/logo-light.svg');
+    height: 40px;
+  }
+
+  .icon,
+  i[class^="icon-"] {
+    color: #fff !important;
+    fill: #fff !important;
+  }
+
+  .border-top-light {
+    border-top: 1px solid rgba(255,255,255,0.15) !important;
+  }
 }
 
 .footer.-dashboard {

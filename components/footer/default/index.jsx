@@ -10,6 +10,9 @@ const index = () => {
         <div className="pt-60 pb-60">
           <div className="row y-gap-40 justify-between xl:justify-start">
             <div className="col-xl-2 col-lg-4 col-sm-6">
+              <div className="footer-logo mb-30">
+                <img src="/img/general/logo-light.svg" alt="logo" height="40" />
+              </div>
               <h5 className="text-16 fw-500 mb-30">Contact Us</h5>
               <ContactInfo />
             </div>
