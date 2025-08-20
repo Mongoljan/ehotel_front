@@ -1,6 +1,7 @@
 
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
+import { use } from "react";
 import rentalsData from "@/data/rentals";
 import Header11 from "@/components/header/header-11";
 import Overview from "@/components/rental-single/Overview";
@@ -23,7 +24,7 @@ export const metadata = {
 };
 
 const TourSingleV1Dynamic = ({ params }) => {
-  const id = params.id;
+  const { id } = use(params);
   const rental = rentalsData.find((item) => item.id == id) || rentalsData[0];
 
   return (
@@ -36,7 +37,11 @@ const TourSingleV1Dynamic = ({ params }) => {
       <Header11 />
       {/* End Header 1 */}
 
-      <TopBreadCrumb />
+      <TopBreadCrumb 
+        rentalName={rental?.title}
+        location={rental?.location || rental?.city}
+        categoryName="Rentals"
+      />
       {/* End top breadcrumb */}
 
       <section className="pt-40">

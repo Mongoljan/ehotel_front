@@ -22,13 +22,6 @@ const LanguageMegaMenu = ({ textClass = "" }) => {
   // Use availableLanguages or fallback to Object.values(languages)
   const langs = availableLanguages || (languages ? Object.values(languages) : []);
 
-  // Debug logging
-  console.log('LanguageMegaMenu debug:', {
-    currentLanguage,
-    availableLanguages,
-    changeLanguage: typeof changeLanguage
-  });
-
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -49,7 +42,6 @@ const LanguageMegaMenu = ({ textClass = "" }) => {
     const fn = switchLanguage || changeLanguage;
     if (fn) {
       fn(langCode);
-      console.log('Language change called successfully');
     } else {
       console.error('No language change function available');
     }

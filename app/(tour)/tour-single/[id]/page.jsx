@@ -1,6 +1,7 @@
 
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
+import { use } from "react";
 import toursData from "@/data/tours";
 import Header11 from "@/components/header/header-11";
 import TopBreadCrumb from "@/components/tour-single/TopBreadCrumb";
@@ -23,7 +24,7 @@ export const metadata = {
 };
 
 const TourSingleV1Dynamic = ({ params }) => {
-  const id = params.id;
+  const { id } = use(params);
   const tour = toursData.find((item) => item.id == id) || toursData[0];
 
   return (
@@ -36,7 +37,11 @@ const TourSingleV1Dynamic = ({ params }) => {
       <Header11 />
       {/* End Header 1 */}
 
-      <TopBreadCrumb />
+      <TopBreadCrumb 
+        tourName={tour?.title}
+        location={tour?.location || tour?.city}
+        categoryName="Tours"
+      />
       {/* End top breadcrumb */}
 
       <section className="pt-40">

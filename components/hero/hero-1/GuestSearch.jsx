@@ -2,7 +2,7 @@
 'use client'
 
 import { useTranslation } from '../../../contexts/TranslationContext';
-import React, { useState } from "react";
+import React, { useState, forwardRef, useImperativeHandle } from "react";
 
 const Counter = ({ name, defaultValue, onCounterChange }) => {
   const { t } = useTranslation();
@@ -68,22 +68,29 @@ const Counter = ({ name, defaultValue, onCounterChange }) => {
   );
 };
 
-const GuestSearch = () => {
+const GuestSearch = forwardRef((props, ref) => {
   const { t } = useTranslation();
   const counters = [
     { name: "Adults", defaultValue: 2 },
-    { name: "Children", defaultValue: 1 },
+    { name: "Children", defaultValue: 0 },
     { name: "Rooms", defaultValue: 1 },
   ];
   
   const [guestCounts, setGuestCounts] = useState({
     Adults: 2,
-    Children: 1,
+    Children: 0,
     Rooms: 1,
   });
+
+  // Expose methods to parent component
+  useImperativeHandle(ref, () => ({
+    getGuestCounts: () => guestCounts
+  }));
+
   const handleCounterChange = (name, value) => {
     setGuestCounts((prevState) => ({ ...prevState, [name]: value }));
   };
+
   return (
     <div className="searchMenu-guests px-30 lg:py-20 lg:px-0 js-form-dd js-form-counters position-relative">
       <div
@@ -116,5 +123,5 @@ const GuestSearch = () => {
       </div>
     </div>
   );
-};
+});
 export default GuestSearch;

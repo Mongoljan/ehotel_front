@@ -20,7 +20,30 @@
     "readMore": "Read More",
     "showMore": "Show More",
     "showLess": "Show Less",
-    "pages": "Pages"
+    "pages": "Pages",
+    "searching": "Searching...",
+    "tryAgain": "Try Again"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "hotels": "Hotels",
+    "hotelDetails": "Hotel Details",
+    "allHotels": "All Hotels",
+    "activities": "Activities",
+    "activityDetails": "Activity Details",
+    "allActivities": "All Activities",
+    "tours": "Tours",
+    "tourDetails": "Tour Details",
+    "allTours": "All Tours",
+    "cars": "Cars",
+    "carDetails": "Car Details",
+    "allCars": "All Cars",
+    "cruises": "Cruises",
+    "cruiseDetails": "Cruise Details",
+    "allCruises": "All Cruises",
+    "rentals": "Rentals",
+    "rentalDetails": "Rental Details",
+    "allRentals": "All Rentals"
   },
   "hero": {
     "findNextPlace": "Find Next Place To Visit",
@@ -36,7 +59,8 @@
     "agesNote": "Ages 0 - 17",
     "adultsCount": "adults",
     "childrenCount": "children", 
-    "roomCount": "room"
+    "roomCount": "room",
+    "noLocationsFound": "No locations found"
   },
   "footer": {
     "allInOneApp": "Your all-in-one travel app",
@@ -126,7 +150,26 @@
       "budget": "Budget",
       "boutique": "Boutique",
       "business": "Business"
-    }
+    },
+    "cheapestRoom": "Cheapest Room",
+    "capacity": "Capacity",
+    "available": "Available",
+    "facilities": "Facilities",
+    "more": "more",
+    "totalEstimate": "Total Estimate",
+    "night": "night",
+    "nights": "nights",
+    "viewDeal": "View Deal",
+    "noResults": "No Hotels Found",
+    "noResultsMessage": "No hotels match your search criteria. Try adjusting your filters.",
+    "hotelFound": "hotel found",
+    "hotelsFound": "hotels found",
+    "forYourSearch": "for your search",
+    "searchingIn": "Searching in",
+    "perNight": "per night",
+    "perRoom": "per room",
+    "roomsAvailable": "rooms available",
+    "showOnMap": "Show on map"
   },
   "booking": {
     "title": "Booking",

@@ -3,12 +3,12 @@ import Header11 from "@/components/header/header-11";
 import DefaultFooter from "@/components/footer/default";
 import MainFilterSearchBox from "@/components/hotel-list/hotel-list-v1/MainFilterSearchBox";
 import TopHeaderFilter from "@/components/hotel-list/hotel-list-v1/TopHeaderFilter";
-import HotelProperties from "@/components/hotel-list/hotel-list-v1/HotelProperties";
+import HotelSearchResults from "@/components/hotel-list/hotel-list-v1/HotelSearchResults";
 import Pagination from "@/components/hotel-list/common/Pagination";
 import Sidebar from "@/components/hotel-list/hotel-list-v1/Sidebar";
 
 export const metadata = {
-  title: "Hotel List v1 || GoTrip - Travel & Tour React NextJS Template",
+  title: "Hotel Search Results || GoTrip - Travel & Tour React NextJS Template",
   description: "GoTrip - Travel & Tour React NextJS Template",
 };
 
@@ -28,7 +28,7 @@ const index = () => {
           <div className="row">
             <div className="col-12">
               <div className="text-center">
-                <h1 className="text-30 fw-600">Find Your Dream Luxury Hotel</h1>
+                <h1 className="text-30 fw-600">Find Your Dream Hotel</h1>
               </div>
               {/* End text-center */}
               <MainFilterSearchBox />
@@ -82,7 +82,7 @@ const index = () => {
               <div className="mt-30"></div>
               {/* End mt--30 */}
               <div className="row y-gap-30">
-                <HotelProperties />
+                <HotelSearchResults />
               </div>
               {/* End .row */}
               <Pagination />

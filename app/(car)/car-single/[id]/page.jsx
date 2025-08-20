@@ -1,6 +1,7 @@
 
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
+import { use } from "react";
 import { carAPI } from "@/services/travelApi";
 import Header11 from "@/components/header/header-11";
 import Overview from "@/components/car-single/Overview";
@@ -23,7 +24,7 @@ export const metadata = {
 };
 
 const TourSingleV1Dynamic = async ({ params }) => {
-  const id = params.id;
+  const { id } = use(params);
   
   // Fetch car data from API
   let car = null;
@@ -61,7 +62,11 @@ const TourSingleV1Dynamic = async ({ params }) => {
       <Header11 />
       {/* End Header 1 */}
 
-      <TopBreadCrumb />
+      <TopBreadCrumb 
+        carName={car?.title}
+        location={car?.location || car?.city}
+        categoryName="Cars"
+      />
       {/* End top breadcrumb */}
 
       <section className="pt-40">

@@ -2,45 +2,74 @@
 'use client'
 
 import { useTranslation } from '../../../contexts/TranslationContext';
-import { useState } from "react";
+import { useState, forwardRef, useImperativeHandle } from "react";
 
-const SearchBar = () => {
+const SearchBar = forwardRef((props, ref) => {
   const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
 
+  // Expose methods to parent component
+  useImperativeHandle(ref, () => ({
+    getSelectedLocation: () => {
+      return selectedItem?.name || searchValue;
+    },
+    getSelectedLocationData: () => {
+      return selectedItem;
+    }
+  }));
+
   const locationSearchContent = [
     {
       id: 1,
-      name: "London",
-      address: "Greater London, United Kingdom",
+      name: "Сүхбаатар",
+      address: "Улаанбаатар, Монгол",
     },
     {
       id: 2,
-      name: "New York",
-      address: "New York State, United States",
+      name: "Хан-Уул",
+      address: "Улаанбаатар, Монгол",
     },
     {
       id: 3,
-      name: "Paris",
-      address: "France",
+      name: "Баянзүрх",
+      address: "Улаанбаатар, Монгол",
     },
     {
       id: 4,
-      name: "Madrid",
-      address: "Spain",
+      name: "Чингэлтэй",
+      address: "Улаанбаатар, Монгол",
     },
     {
       id: 5,
-      name: "Santorini",
-      address: "Greece",
+      name: "Баянгол",
+      address: "Улаанбаатар, Монгол",
+    },
+    {
+      id: 6,
+      name: "Сонгинохайрхан",
+      address: "Улаанбаатар, Монгол",
     },
   ];
 
   const handleOptionClick = (item) => {
     setSearchValue(item.name);
     setSelectedItem(item);
+    // Store in localStorage for persistence
+    localStorage.setItem('selected_location', item.name);
   };
+
+  const handleInputChange = (e) => {
+    setSearchValue(e.target.value);
+    // If user types manually, store the value
+    localStorage.setItem('selected_location', e.target.value);
+  };
+
+  // Filter locations based on search input
+  const filteredLocations = locationSearchContent.filter(item =>
+    item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+    item.address.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
   return (
     <>
@@ -58,7 +87,7 @@ const SearchBar = () => {
               placeholder={t('hero.whereGoing')}
               className="js-search js-dd-focus"
               value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -67,7 +96,7 @@ const SearchBar = () => {
         <div className="shadow-2 dropdown-menu min-width-400">
           <div className="bg-white px-20 py-20 sm:px-0 sm:py-15 rounded-4">
             <ul className="y-gap-5 js-results">
-              {locationSearchContent.map((item) => (
+              {filteredLocations.map((item) => (
                 <li
                   className={`-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option mb-1 ${
                     selectedItem && selectedItem.id === item.id ? "active" : ""
@@ -89,12 +118,17 @@ const SearchBar = () => {
                   </div>
                 </li>
               ))}
+              {filteredLocations.length === 0 && searchValue && (
+                <li className="px-20 py-15 text-center text-light-1">
+                  {t('hero.noLocationsFound') || 'No locations found'}
+                </li>
+              )}
             </ul>
           </div>
         </div>
       </div>
     </>
   );
-};
+});
 
 export default SearchBar;

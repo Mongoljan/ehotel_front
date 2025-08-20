@@ -1,6 +1,7 @@
 
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
+import { use } from "react";
 import activityData from "@/data/activity";
 import Header11 from "@/components/header/header-11";
 import Overview from "@/components/activity-single/Overview";
@@ -26,7 +27,7 @@ export const metadata = {
 };
 
 const TourSingleV1Dynamic = ({ params }) => {
-  const id = params.id;
+  const { id } = use(params);
   const activity =
     activityData.find((item) => item.id == id) || activityData[0];
 

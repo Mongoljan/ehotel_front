@@ -1,7 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic';
 import 'photoswipe/dist/photoswipe.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, use } from 'react';
 import { DateObject } from 'react-multi-date-picker';
 import Header11 from '@/components/header/header-11';
 import TopBreadCrumb from '@/components/hotel-single/TopBreadCrumb';
@@ -26,7 +26,7 @@ import CallToActions from '@/components/common/CallToActions';
 import DefaultFooter from '@/components/footer/default';
 
 const HotelSingleV1Dynamic = ({ params }) => {
-  const id = params.id;
+  const { id } = use(params);
   const [rooms, setRooms] = useState([]);
   const [hotel, setHotel] = useState(null);
   const [dates, setDates] = useState([]);
@@ -168,7 +168,11 @@ const HotelSingleV1Dynamic = ({ params }) => {
     <>
       <div className="header-margin" />
       <Header11 />
-      <TopBreadCrumb />
+      <TopBreadCrumb 
+        hotelName={hotel?.name}
+        location={hotel?.location}
+        categoryName="Hotels"
+      />
       <StickyHeader hotel={hotel} />
       {hotel && <GalleryOne hotel={hotel} />}
       {hotel && <PropertyHighlights hotel={hotel} />}

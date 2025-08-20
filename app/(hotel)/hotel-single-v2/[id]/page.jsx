@@ -1,6 +1,7 @@
 
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
+import { use } from "react";
 import { hotelsData } from "@/data/hotels";
 import DefaultHeader from "@/components/header/default-header";
 import RatingTag from "@/components/hotel-single/RatingTag";
@@ -28,7 +29,7 @@ export const metadata = {
 };
 
 const HotelSingleV2Dynamic = ({ params }) => {
-  const id = params.id;
+  const { id } = use(params);
   const hotel = hotelsData.find((item) => item.id == id) || hotelsData[0];
 
   return (

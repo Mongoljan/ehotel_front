@@ -1,6 +1,7 @@
 
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
+import { use } from "react";
 import cruiseData from "@/data/cruise";
 import Header11 from "@/components/header/header-11";
 import Overview from "@/components/cruise-single/Overview";
@@ -22,7 +23,7 @@ export const metadata = {
 };
 
 const CruiseSingleV1Dynamic = ({ params }) => {
-  const id = params.id;
+  const { id } = use(params);
   const cruise = cruiseData.find((item) => item.id == id);
 
   return (
@@ -35,7 +36,11 @@ const CruiseSingleV1Dynamic = ({ params }) => {
       <Header11 />
       {/* End Header 1 */}
 
-      <TopBreadCrumb />
+      <TopBreadCrumb 
+        cruiseName={cruise?.title}
+        location={cruise?.location || cruise?.city}
+        categoryName="Cruises"
+      />
       {/* End top breadcrumb */}
 
       <section className="pt-40">

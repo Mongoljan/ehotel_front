@@ -9,6 +9,7 @@ import FormReply from "@/components/blog/blog-details/FormReply";
 import TopComment from "@/components/blog/blog-details/TopComment";
 import BlogNavigator from "@/components/blog/blog-details/BlogNavigator";
 import Comments from "@/components/blog/blog-details/Comments";
+import { use } from "react";
 
 export const metadata = {
   title: "Blog Single || GoTrip - Travel & Tour React NextJS Template",
@@ -16,7 +17,7 @@ export const metadata = {
 };
 
 const BlogSingleDynamic = ({ params }) => {
-  const id = params.id;
+  const { id } = use(params);
   const blog = blogsData.find((item) => item.id == id) || blogsData[0];
 
   return (

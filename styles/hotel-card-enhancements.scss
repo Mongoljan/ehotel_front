@@ -1,0 +1,120 @@
+/* Enhanced Hotel Card Styles */
+.hover-shadow-8:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12) !important;
+}
+
+.shadow-4 {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
+}
+
+.duration-200 {
+  transition-duration: 200ms;
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(10px);
+}
+
+.bg-gradient-to-t {
+  background: linear-gradient(to top, var(--tw-gradient-stops));
+}
+
+.from-dark-1\/20 {
+  --tw-gradient-from: rgba(0, 0, 0, 0.2);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0, 0, 0, 0));
+}
+
+.to-transparent {
+  --tw-gradient-to: transparent;
+}
+
+.bg-white\/90 {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.bg-dark-1\/80 {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.text-white\/40 {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.bg-blue-1\/5 {
+  background-color: rgba(22, 178, 255, 0.05);
+}
+
+.hover\:bg-blue-2:hover {
+  background-color: #1ba0d9;
+}
+
+.hover\:text-blue-2:hover {
+  color: #1ba0d9;
+}
+
+.hover\:text-red-1:hover {
+  color: #ff6b6b;
+}
+
+.shadow-3 {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hover\:shadow-4:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.rounded-16 {
+  border-radius: 16px;
+}
+
+.rounded-12 {
+  border-radius: 12px;
+}
+
+.rounded-8 {
+  border-radius: 8px;
+}
+
+.lh-1 {
+  line-height: 1;
+}
+
+.lh-14 {
+  line-height: 1.4;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.transition-transform {
+  transition-property: transform;
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
