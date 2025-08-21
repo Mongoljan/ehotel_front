@@ -27,14 +27,37 @@ const HotelSearchResults = () => {
       const response = await HotelSearchAPI.searchHotels(params);
       console.log('API Response:', response);
       
-      if (response && Array.isArray(response)) {
-        setHotels(response);
-      } else {
-        console.warn('Unexpected API response format:', response);
-        setHotels([]);
+      let hotelsArray = [];
+      
+      // Handle different response formats - most APIs return paginated results
+      if (Array.isArray(response)) {
+        hotelsArray = response;
+      } else if (response && typeof response === 'object') {
+        // Django REST framework pagination format
+        if (response.results && Array.isArray(response.results)) {
+          hotelsArray = response.results;
+          setTotalCount(response.count || response.results.length);
+        } else if (response.data && Array.isArray(response.data)) {
+          hotelsArray = response.data;
+        } else if (response.hotels && Array.isArray(response.hotels)) {
+          hotelsArray = response.hotels;
+        } else {
+          console.warn('Unexpected API response format:', response);
+          console.log('Response keys:', Object.keys(response));
+          hotelsArray = [];
+        }
       }
+      
+      console.log('Found hotels:', hotelsArray.length);
+      
+      setHotels(hotelsArray);
+      if (!response.count) {
+        setTotalCount(hotelsArray.length);
+      }
+      
     } catch (error) {
       console.error('Error searching hotels:', error);
+      console.error('Error details:', error.message);
       setError('Failed to search hotels. Please try again.');
       setHotels([]);
     } finally {
@@ -127,6 +150,7 @@ const HotelSearchResults = () => {
           <p className="text-15 text-light-1">
             {t('hotel.noResultsMessage') || 'No hotels match your search criteria. Try adjusting your filters.'}
           </p>
+
         </div>
       </div>
     );
