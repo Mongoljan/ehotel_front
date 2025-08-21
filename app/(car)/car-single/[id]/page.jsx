@@ -2,7 +2,6 @@
 import dynamic from "next/dynamic";
 import "photoswipe/dist/photoswipe.css";
 import { use } from "react";
-import { carAPI } from "@/services/travelApi";
 import Header11 from "@/components/header/header-11";
 import Overview from "@/components/car-single/Overview";
 import PropertyHighlights from "@/components/car-single/PropertyHighlights";
@@ -23,19 +22,24 @@ export const metadata = {
   description: "GoTrip - Travel & Tour React NextJS Template",
 };
 
-const TourSingleV1Dynamic = async ({ params }) => {
+const TourSingleV1Dynamic = ({ params }) => {
   const { id } = use(params);
   
-  // Fetch car data from API
-  let car = null;
-  try {
-    car = await carAPI.getCarDetails(id);
-  } catch (error) {
-    console.error('Failed to fetch car details:', error);
-    // Fallback to first car if specific car not found
-    const carsData = await carAPI.getCars();
-    car = carsData[0];
-  }
+  // Use static data for now - you can implement proper data fetching with useEffect or server components
+  const carsData = [
+    {
+      id: 1,
+      title: "Tesla Model S",
+      location: "San Francisco",
+      city: "San Francisco",
+      price: 120,
+      image: "/img/cars/1.jpg",
+      rating: 4.8,
+      reviews: 42
+    }
+  ];
+  
+  const car = carsData.find((item) => item.id == id) || carsData[0];
 
   if (!car) {
     return (
@@ -294,5 +298,7 @@ const TourSingleV1Dynamic = async ({ params }) => {
     </>
   );
 };
+
+TourSingleV1Dynamic.displayName = 'CarSingleV1Dynamic';
 
 export default dynamic(() => Promise.resolve(TourSingleV1Dynamic));

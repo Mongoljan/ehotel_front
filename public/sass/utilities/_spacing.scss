@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $_sizesBreaks: xl, lg, md, sm;
 
 $sizes: 0, 4, 5, 10, 15, 20, 24, 28, 30, 35, 40, 45, 50, 60, 70, 80, 90, 120;
@@ -98,24 +100,24 @@ $gap-sizes: 0, 5, 10, 15, 20, 30, 40, 50, 60, 80;
 @each $gap in $gap-sizes {
   .x-gap {
     &-#{$gap} {
-      margin-left: -#{$gap / 2}px;
-      margin-right: -#{$gap / 2}px;
+      margin-left: -#{math.div($gap, 2)}px;
+      margin-right: -#{math.div($gap, 2)}px;
 
       > * {
-        padding-left: #{$gap / 2}px;
-        padding-right: #{$gap / 2}px;
+        padding-left: #{math.div($gap, 2)}px;
+        padding-right: #{math.div($gap, 2)}px;
       }
     }
   }
 
   .y-gap {
     &-#{$gap} {
-      margin-top: -#{$gap / 2}px;
-      margin-bottom: -#{$gap / 2}px;
+      margin-top: -#{math.div($gap, 2)}px;
+      margin-bottom: -#{math.div($gap, 2)}px;
 
       > * {
-        padding-top: #{$gap / 2}px;
-        padding-bottom: #{$gap / 2}px;
+        padding-top: #{math.div($gap, 2)}px;
+        padding-bottom: #{math.div($gap, 2)}px;
       }
     }
   }
@@ -126,24 +128,24 @@ $gap-sizes: 0, 5, 10, 15, 20, 30, 40, 50, 60, 80;
     @each $gap in $gap-sizes {
       .#{$media}\:x-gap {
         &-#{$gap} {
-          margin-left: -#{$gap / 2}px;
-          margin-right: -#{$gap / 2}px;
+          margin-left: -#{math.div($gap, 2)}px;
+          margin-right: -#{math.div($gap, 2)}px;
 
           > * {
-            padding-left: #{$gap / 2}px;
-            padding-right: #{$gap / 2}px;
+            padding-left: #{math.div($gap, 2)}px;
+            padding-right: #{math.div($gap, 2)}px;
           }
         }
       }
 
       .#{$media}\:y-gap {
         &-#{$gap} {
-          margin-top: -#{$gap / 2}px;
-          margin-bottom: -#{$gap / 2}px;
+          margin-top: -#{math.div($gap, 2)}px;
+          margin-bottom: -#{math.div($gap, 2)}px;
 
           > * {
-            padding-top: #{$gap / 2}px;
-            padding-bottom: #{$gap / 2}px;
+            padding-top: #{math.div($gap, 2)}px;
+            padding-bottom: #{math.div($gap, 2)}px;
           }
         }
       }
