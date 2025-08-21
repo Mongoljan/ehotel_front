@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import CallToActions from "@/components/common/CallToActions";
 import Header11 from "@/components/header/header-11";
 import DefaultFooter from "@/components/footer/default";
@@ -82,7 +83,20 @@ const index = () => {
               <div className="mt-30"></div>
               {/* End mt--30 */}
               <div className="row y-gap-30">
-                <HotelSearchResults />
+                <Suspense fallback={
+                  <div className="col-12">
+                    <div className="d-flex justify-center items-center py-60">
+                      <div className="text-center">
+                        <div className="spinner-border text-blue-1" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <div className="text-15 mt-20">Loading hotels...</div>
+                      </div>
+                    </div>
+                  </div>
+                }>
+                  <HotelSearchResults />
+                </Suspense>
               </div>
               {/* End .row */}
               <Pagination />
