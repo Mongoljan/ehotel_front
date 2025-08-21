@@ -50,7 +50,7 @@ const Team1 = () => {
 
   // custom navigation
   function Arrow(props) {
-    let name =
+    const name =
       props.type === "next"
         ? "arrow-top-right d-flex items-center text-24 arrow-right-hover arrow-next"
         : "arrow-top-right d-flex items-center text-24 arrow-left-hover arro-prev";

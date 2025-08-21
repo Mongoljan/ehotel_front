@@ -1,4 +1,4 @@
-const PropertyHighlights2 = ( {hotel}) => {
+const PropertyHighlights2 = () => {
   const highlightsContent = [
     {
       id: 1,

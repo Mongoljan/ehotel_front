@@ -53,4 +53,6 @@ const index = () => {
   );
 };
 
+index.displayName = 'DefaultFooter';
+
 export default index;

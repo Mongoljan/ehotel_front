@@ -1,7 +1,7 @@
 'use client';
 
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslation } from "../../../contexts/TranslationContext";
 import { toast } from "sonner";
@@ -18,14 +18,39 @@ const HotelSearchResults = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [hasSearchParams, setHasSearchParams] = useState(false);
 
+  const searchHotels = useCallback(async (params) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      console.log('Searching hotels with params:', params);
+      const response = await HotelSearchAPI.searchHotels(params);
+      console.log('API Response:', response);
+      
+      if (response && Array.isArray(response)) {
+        setHotels(response);
+      } else {
+        console.warn('Unexpected API response format:', response);
+        setHotels([]);
+      }
+    } catch (error) {
+      console.error('Error searching hotels:', error);
+      setError('Failed to search hotels. Please try again.');
+      setHotels([]);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
-    const location = searchParams.get('location');
-    const checkIn = searchParams.get('check_in');
-    const checkOut = searchParams.get('check_out');
-    const adults = searchParams.get('adults');
-    const children = searchParams.get('children');
-    const rooms = searchParams.get('rooms');
-    const accType = searchParams.get('acc_type');
+    const params = new URLSearchParams(searchParams);
+    const location = params.get('location');
+    const checkIn = params.get('check_in');
+    const checkOut = params.get('check_out');
+    const adults = params.get('adults');
+    const children = params.get('children');
+    const rooms = params.get('rooms');
+    const accType = params.get('acc_type');
 
     // Check if we have search parameters from the main search
     const hasParams = location || checkIn || checkOut || adults || children || rooms || accType;
@@ -42,33 +67,7 @@ const HotelSearchResults = () => {
         acc_type: accType || 'hotel'
       });
     }
-  }, [searchParams]);
-
-  const searchHotels = async (params) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      console.log('Searching hotels with params:', params);
-      const response = await HotelSearchAPI.searchHotels(params);
-      console.log('API Response:', response);
-      
-      setHotels(response.results || []);
-      setTotalCount(response.count || 0);
-      
-      if (response.results?.length === 0) {
-        toast.info(t('hotel.noResults') || 'No hotels found for your search criteria.');
-      } else {
-        toast.success(`${response.count || 0} ${t('hotel.hotelsFound') || 'hotels found'}`);
-      }
-    } catch (error) {
-      console.error('Search error:', error);
-      setError(error.message);
-      toast.error(t('errors.searchFailed') || 'Failed to search hotels. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  }, [searchParams, searchHotels]);
 
   // Convert search params to object for passing to hotel cards
   const searchParamsObj = {

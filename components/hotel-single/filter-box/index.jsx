@@ -1,7 +1,6 @@
 // "use client";
 
 import { useState } from 'react';
-import Image from 'next/image';
 import DateSearch from './DateSearch';
 import GuestSearch from './GuestSearch';
 // Use Sonner (or your chosen toast lib) instead of alert

@@ -37,59 +37,6 @@ const APIHotelCard = ({ hotel, searchParams }) => {
     return 0;
   };
 
-  // Helper function to get facility icon
-  const getFacilityIcon = (facility) => {
-    const facilityIcons = {
-      // Common facilities
-      'Room service': 'icon-phone',
-      'room service': 'icon-phone',
-      '24-hour front desk': 'icon-clock',
-      '24 hour front desk': 'icon-clock',
-      'Fitness center': 'icon-heart',
-      'fitness center': 'icon-heart',
-      'Non-smoking rooms': 'icon-no-smoking',
-      'non-smoking rooms': 'icon-no-smoking',
-      'Airport shuttle': 'icon-plane',
-      'airport shuttle': 'icon-plane',
-      'Family rooms': 'icon-user',
-      'family rooms': 'icon-user',
-      'Spa & welness center': 'icon-heart',
-      'spa & welness center': 'icon-heart',
-      'Spa': 'icon-heart',
-      'spa': 'icon-heart',
-      'Free Wi-Fi': 'icon-wifi',
-      'free wi-fi': 'icon-wifi',
-      'WiFi': 'icon-wifi',
-      'wifi': 'icon-wifi',
-      'Wi-Fi': 'icon-wifi',
-      'wi-fi': 'icon-wifi',
-      'Electric vehicle charging station': 'icon-battery',
-      'Guest Laundry': 'icon-washing-machine',
-      'guest laundry': 'icon-washing-machine',
-      'Breakfast': 'icon-breakfast',
-      'breakfast': 'icon-breakfast',
-      'Pool': 'icon-swimming',
-      'pool': 'icon-swimming',
-      'Swimming Pool': 'icon-swimming',
-      'swimming pool': 'icon-swimming',
-      'Bar': 'icon-cocktail',
-      'bar': 'icon-cocktail',
-      'Restaurant': 'icon-restaurant',
-      'restaurant': 'icon-restaurant',
-      'Parking': 'icon-car',
-      'parking': 'icon-car',
-      'Free parking': 'icon-car',
-      'free parking': 'icon-car',
-      'Air conditioning': 'icon-snowflake',
-      'air conditioning': 'icon-snowflake',
-      'Pet friendly': 'icon-heart',
-      'pet friendly': 'icon-heart'
-    };
-    
-    // Check for exact match first, then lowercase
-    return facilityIcons[facility] || facilityIcons[facility?.toLowerCase()] || 'icon-check';
-  };
-
   // Format price
   const formatPrice = (price) => {
     return new Intl.NumberFormat('mn-MN', {
@@ -117,8 +64,6 @@ const APIHotelCard = ({ hotel, searchParams }) => {
     }
     return hotel.nights || 1;
   };
-
-  const nights = calculateNights();
 
   return (
     <div className="col-12">

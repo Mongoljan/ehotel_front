@@ -124,4 +124,7 @@ const GuestSearch = forwardRef((props, ref) => {
     </div>
   );
 });
+
+GuestSearch.displayName = 'GuestSearch';
+
 export default GuestSearch;

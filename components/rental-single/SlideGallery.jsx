@@ -4,7 +4,7 @@
 import Image from "next/image";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
-const SlideGallery = ({ rental }) => {
+const SlideGallery = () => {
   return (
     <>
       <Gallery>

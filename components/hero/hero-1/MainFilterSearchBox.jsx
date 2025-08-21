@@ -28,9 +28,9 @@ const MainFilterSearchBox = () => {
       setIsSearching(true);
       
       // Get search parameters from localStorage and child components
-      const location = locationRef.current?.getSelectedLocation?.() || localStorage.getItem('selected_location') || '';
-      const checkIn = localStorage.getItem('check_in') || '';
-      const checkOut = localStorage.getItem('check_out') || '';
+      const location = locationRef.current?.getSelectedLocation?.() || (typeof window !== 'undefined' ? localStorage.getItem('selected_location') : '') || '';
+      const checkIn = (typeof window !== 'undefined' ? localStorage.getItem('check_in') : '') || '';
+      const checkOut = (typeof window !== 'undefined' ? localStorage.getItem('check_out') : '') || '';
       const adults = guestRef.current?.getGuestCounts?.()?.Adults || 2;
       const children = guestRef.current?.getGuestCounts?.()?.Children || 0;
       const rooms = guestRef.current?.getGuestCounts?.()?.Rooms || 1;

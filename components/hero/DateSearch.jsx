@@ -10,7 +10,7 @@ const DateSearch = () => {
   ]);
 
   useEffect(() => {
-    if (dates.length === 2) {
+    if (dates.length === 2 && typeof window !== 'undefined') {
       const checkIn = dates[0]?.format("YYYY-MM-DD");
       const checkOut = dates[1]?.format("YYYY-MM-DD");
       if (checkIn && checkOut) {

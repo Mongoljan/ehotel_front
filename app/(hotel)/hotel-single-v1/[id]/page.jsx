@@ -33,14 +33,16 @@ const HotelSingleV1Dynamic = ({ params }) => {
 
   // ✅ Load dates from localStorage if available
   useEffect(() => {
-    const storedCheckIn = localStorage.getItem("check_in");
-    const storedCheckOut = localStorage.getItem("check_out");
+    if (typeof window !== 'undefined') {
+      const storedCheckIn = localStorage.getItem("check_in");
+      const storedCheckOut = localStorage.getItem("check_out");
 
-    if (storedCheckIn && storedCheckOut) {
-      setDates([
-        new DateObject({ date: storedCheckIn, format: "YYYY-MM-DD" }),
-        new DateObject({ date: storedCheckOut, format: "YYYY-MM-DD" }),
-      ]);
+      if (storedCheckIn && storedCheckOut) {
+        setDates([
+          new DateObject({ date: storedCheckIn, format: "YYYY-MM-DD" }),
+          new DateObject({ date: storedCheckOut, format: "YYYY-MM-DD" }),
+        ]);
+      }
     }
   }, []);
 

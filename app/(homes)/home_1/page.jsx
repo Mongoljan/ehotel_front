@@ -114,4 +114,6 @@ const Home_1 = () => {
   );
 };
 
+Home_1.displayName = 'Home_1';
+
 export default dynamic(() => Promise.resolve(Home_1));

@@ -1,8 +1,6 @@
 
 'use client'
 
-import { useState } from "react";
-
 const FilterHotelsTabs2 = ({filterOption, setFilterOption}) => {
 
 

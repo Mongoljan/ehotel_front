@@ -56,13 +56,17 @@ const SearchBar = forwardRef((props, ref) => {
     setSearchValue(item.name);
     setSelectedItem(item);
     // Store in localStorage for persistence
-    localStorage.setItem('selected_location', item.name);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selected_location', item.name);
+    }
   };
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
     // If user types manually, store the value
-    localStorage.setItem('selected_location', e.target.value);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selected_location', e.target.value);
+    }
   };
 
   // Filter locations based on search input

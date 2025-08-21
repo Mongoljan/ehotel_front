@@ -1,7 +1,7 @@
 
 'use client'
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Thumbs } from "swiper/modules";
@@ -57,3 +57,5 @@ export default function Testimonials() {
     </>
   );
 }
+
+Testimonials.displayName = 'Testimonials';
