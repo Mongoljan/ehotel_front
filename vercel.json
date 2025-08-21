@@ -1,14 +1,1 @@
-{
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "functions": {
-    "app/**/*.jsx": {
-      "runtime": "nodejs20.x"
-    },
-    "app/**/*.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
-}
+
